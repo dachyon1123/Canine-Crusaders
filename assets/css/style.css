@@ -1,0 +1,47 @@
+
+.icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+}
+
+.icon img {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: auto;
+}
+
+header {
+    position: relative;
+    margin-left: 120px;
+    margin-top: 65px;
+    border-bottom: 1px solid #000;
+}
+
+
+.search-bar {
+    margin-bottom: 10px; /* Add spacing between search bars */
+}
+
+.container {
+    display: flex;
+}
+
+aside {
+    width: 20%;
+    height: fit-content;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+main {
+    width: 65%;
+    padding: 20px;
+}
+
+.search-bar {
+    max-height: 100px; /* Adjust the maximum height for scrolling */
+    overflow-y: auto;
+    padding: 5px;
+}
