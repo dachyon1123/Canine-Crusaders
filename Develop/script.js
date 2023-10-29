@@ -1,0 +1,199 @@
+let dogModal = $('#modal')
+let ninjaApiInfo1 = $('.ninja-api-information1')
+let ninjaApiInfo2 = $('.ninja-api-information2')
+let modalCloseButton = $('.close-modal')
+
+
+
+
+//Fetches the token that is required for the api call
+async function fetchToken() {
+  const url = 'https://api.petfinder.com/v2/oauth2/token';
+  const params = new URLSearchParams();
+  params.append('grant_type', 'client_credentials');
+  params.append('client_id', 'mU30JwOsjFnaW6kDyLIZbU944L4ibtzuYzDYY9a2ahgIrqXE13');
+  params.append('client_secret', 'XxZh8h5wx3baDaYym4AnbuH3FpPBCvfmEDhNO4Eu');
+
+  let res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: params.toString()
+  })
+  let data = await res.json();
+  return data['access_token']
+}
+fetchDogs();
+
+//Calls the petfinder api to give a list of dogs up for adoption
+async function fetchDogs () {
+  let token = await fetchToken();
+
+  let url = "https://api.petfinder.com/v2/animals?type=dog&limit=100"
+
+  let res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  let data = await res.json()
+  createDogCards(data)
+}
+
+//Fetches the list of dogs from the api
+
+
+
+//Creates the dog cards to the page and adds a modal for each one
+function createDogCards(dogs) {
+  let dogArray = dogs.animals
+  console.log(dogArray)
+  
+  
+  for (let i = 0; i<dogArray.length; ++i) {
+    let dogCardDiv = $('.dog-cards');
+    
+
+    if (dogArray[i].photos.length === 0) {
+      continue
+    }
+
+    let dogCard = $('<div>');
+    dogCard.addClass('dog-card flex flex-col justify-center h-80 w-80')
+
+    let dogImageDiv = $('<div>').addClass('h-full overflow-hidden rounded-xl mr-2 ml-2')
+    
+    let dogImage = $('<img>')
+    dogImage.attr('src', dogArray[i].photos[0].full)
+    dogImage.addClass('h-full w-full')
+  
+
+    dogCard.append(dogImageDiv)
+    dogImageDiv.append(dogImage)
+    dogCardDiv.append(dogCard)
+
+    dogCard.on('click', function() {
+      let dogModalName = $('.dog-name');
+      let dogModalImage = $('.dog-image')
+      let dogModalDescription = $('.dog-description')
+      let dogBreed = $('.dog-breed')
+      let dogAge = $('.dog-age')
+      ninjaApiInfo1.text('')
+      ninjaApiInfo2.text('')
+
+      dogModalName.text(dogArray[i].name)
+      dogModalDescription.text(dogArray[i].description)
+      dogBreed.text(dogArray[i].breeds.primary)
+      dogAge.text(dogArray[i].age)
+
+      
+      dogModalImage.attr('src', dogArray[i].photos[0].full)
+      dogModalImage.addClass('')
+      
+
+      fetchDogInformation(dogArray[i].breeds.primary)
+      
+      dogModal.show();
+    })
+  }  
+}
+
+//Closes modal when X button is pressed in top right of modal
+modalCloseButton.on('click', function() {
+  dogModal.hide();
+  
+})
+
+//Closes modal when esc is pressed
+$(document).keydown(function(event) {
+  if (event.which == 27) {
+      dogModal.hide(); 
+      
+  } 
+});
+
+
+
+async function fetchDogInformation(name) {
+  try {
+      const response = await fetch('https://api.api-ninjas.com/v1/dogs?name=' + encodeURIComponent(name), {
+          method: 'GET',
+          headers: {
+              'X-Api-Key': 'gbWmZrUovo5MdfRw15NJFA==ZZxzVph1f8g2nr87',
+              'Content-Type': 'application/json'
+          }
+      });
+
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      dogNinjaApiName(result);
+      console.log(result)
+  } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      noInformationFound()
+  }
+}
+
+
+
+
+function dogNinjaApiName (dogs) {
+  
+  let dogBarkingLevel = $('<p>');
+  dogBarkingLevel.text(`Barking Level: ${dogs[0].barking}`)
+
+  let dogEnergyLevel =  $('<p>');
+  dogEnergyLevel.text(`Energy Level: ${dogs[0].energy}`)
+
+  let dogPlayfulness = $('<p>')
+  dogPlayfulness.text(`Playfulness: ${dogs[0].playfulness}`)
+
+  let goodWithStrangers = $('<p>')
+  goodWithStrangers.text(`Good w/ Strangers: ${dogs[0].good_with_strangers}`)
+  
+  let goodWithDogs = $('<p>')
+  goodWithDogs.text(`Good w/ Dogs: ${dogs[0].good_with_other_dogs}`)
+
+  let goodWithChildren = $('<p>')
+  goodWithChildren.text(`Good w/ Children: ${dogs[0].good_with_children}`)
+  
+  ninjaApiInfo1.append(dogBarkingLevel)
+  ninjaApiInfo1.append(dogEnergyLevel)
+  ninjaApiInfo1.append(dogPlayfulness)
+
+  ninjaApiInfo2.append(goodWithStrangers)
+  ninjaApiInfo2.append(goodWithDogs)
+  ninjaApiInfo2.append(goodWithChildren)
+}
+
+function noInformationFound() {
+  let dogBarkingLevel = $('<p>');
+  dogBarkingLevel.text(`Barking Level: N/A`)
+
+  let dogEnergyLevel =  $('<p>');
+  dogEnergyLevel.text(`Energy Level: N/A`)
+
+  let dogPlayfulness = $('<p>')
+  dogPlayfulness.text(`Playfulness: N/A`)
+
+  let goodWithStrangers = $('<p>')
+  goodWithStrangers.text(`Good w/ Strangers: N/A`)
+  
+  let goodWithDogs = $('<p>')
+  goodWithDogs.text(`Good w/ Dogs: N/A`)
+
+  let goodWithChildren = $('<p>')
+  goodWithChildren.text(`Good w/ Children: N/A`)
+  
+  ninjaApiInfo1.append(dogBarkingLevel)
+  ninjaApiInfo1.append(dogEnergyLevel)
+  ninjaApiInfo1.append(dogPlayfulness)
+
+  ninjaApiInfo2.append(goodWithStrangers)
+  ninjaApiInfo2.append(goodWithDogs)
+  ninjaApiInfo2.append(goodWithChildren)
+}
