@@ -3,20 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
 
   <link rel="stylesheet" href="./Develop/styles.css">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  
 
 
   <title>Document</title>
 </head>
-<body>
-  <h1>Hello</h1>
+<body class="w-screen">
+  <div class="main-div m-auto flex flex-col justify-center items-center flex-wrap bg-gray-700">
+    <div class="head h-40">
+      Header Text
+    </div>
+    <div class="content-div flex ">
+      <div class="filter w-1/6 border-2 border-slate-900">
+        filter
+      </div>
+
+      <div class="dog-cards flex flex-row flex-wrap justify-center gap-10 text-center gap-5 w-full mr-5 border-2 border-slate-900 p-5">
+      
+      </div>
+    </div>
+  </div>
 
 
+  
+  <dialog class="modal h-full w-1/2 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal">
+    <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-3xl mb-2">
+      <img class="dog-image" alt="Dog Image">
+    </div>
+    <div class="dog-information flex flex-col">
+      <h1 class="dog-name text-center text-5xl mt-2 mb-3"></h1>
+      <p class="dog-description text-center text-xl h-1/4 ml-2 mr-2"></p>
+      <p class="dog-age text-center text-xl mt-2"></p>
+      <p class="dog-breed text-center text-xl mt-2"></p>
+      <div class="all-ninja-api-info flex justify-evenly mt-5">
+        <div class="ninja-api-information1">
+        </div>
+        <div class="ninja-api-information2">
+        
+        </div>
+      </div>
+      
+    </div>
+    <button type="button" class="close-modal text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 absolute top-5 right-5">X</button>
+  </dialog>
+
+  
+  
 
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <script src="./Develop/script.js"></script>
 </body>
