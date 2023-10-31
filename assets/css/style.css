@@ -24,9 +24,6 @@ header {
     margin-bottom: 10px; /* Add spacing between search bars */
 }
 
-.container {
-    display: flex;
-}
 
 aside {
     width: 20%;
@@ -36,7 +33,7 @@ aside {
 }
 
 main {
-    width: 65%;
+    width: 100%;
     padding: 20px;
 }
 
@@ -45,3 +42,25 @@ main {
     overflow-y: auto;
     padding: 5px;
 }
+
+/* The CSS for the modal itself, ensuring it covers other content */
+#modal {
+    /* existing styles... */
+    position: fixed; /* Position it relative to the viewport */
+    z-index: 1000; /* High z-index so it is above other content */
+    left: 50%; /* Positions the left edge of the modal in the middle of the screen */
+    top: 50%; /* Positions the top edge of the modal in the middle of the screen */
+    transform: translate(-50%, -50%); /* Shifts the modal back by half its width and height to center it */
+    display: none; /* Start off hidden */
+    /* More of your styling... */
+  }
+  
+  /* When the modal is being displayed, it should override the hidden display */
+  #modal[open] {
+    display: block; /* Or whatever display mode you prefer */
+  }
+  
+  
+  .dog-card {
+    cursor: pointer;
+  }
