@@ -24,9 +24,6 @@ header {
     margin-bottom: 10px; /* Add spacing between search bars */
 }
 
-.container {
-    display: flex;
-}
 
 aside {
     width: 20%;
@@ -36,7 +33,7 @@ aside {
 }
 
 main {
-    width: 65%;
+    width: 100%;
     padding: 20px;
 }
 
