@@ -2,48 +2,98 @@
 <html lang="en-us">
 
 <head>
-    <title>Canine Crusaders</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Canine Crusaders</title>
 </head>
 
-<body>
-
+<body class="w-screen">
+ <!--Icon-->
     <div class="icon">
         <img src="./assets/images/dog print and hand.jpeg" alt="Paw Print Icon">
     </div>
-    <header>
+<!--Header Title-->
+    <header class="h-1/4">
         <h1>Canine Crusaders</h1>
     </header>
-    <div class="container">
-        <aside>
-            <h2>Search</h2>
-            <form>
-                <div class="search-bar">
-                    <input type="text" name="search1" placeholder="Search 1">
-                    <button type="submit">Search</button>
-                </div>
-                <div class="search-bar">
-                    <input type="text" name="search2" placeholder="Search 2">
-                    <button type="submit">Search</button>
-                </div>
-                <div class="search-bar">
-                    <input type="text" name="search3" placeholder="Search 3">
-                    <button type="submit">Search</button>
-                </div>
-            </form>
-        </aside>
 
-        <main>
-            <h2>Adopt-A-Pet</h2>
-            <p>This is the main content section of the website. You can put your main text, images, and other content
-                here.</p>
-            <h3> hello!</h3>
+    <div class ="main-container flex">
+<!--Aside Search Bar-->
+        <aside>
+            <div class="search-form">
+                <div class="form-category">
+                    <label for="breed" class="category-title">Breed</label>
+                    <input type="text" id="breed" placeholder="Enter Breed">
+                </div>
+                <div class="form-category">
+                    <label for="size" class="category-title">Size</label>
+                    <select id="size">
+                        <option value="">Select Size</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="xlarge">X-Large</option>
+                    </select>
+                </div>
+                <div class="form-category">
+                    <label for="age" class="category-title">Age</label>
+                    <select id="age">
+                        <option value="">Select Age</option>
+                        <option value="baby">Baby</option>
+                        <option value="young">Young</option>
+                        <option value="adult">Adult</option>
+                        <option value="senior">Senior</option>
+                    </select>
+                </div>
+                <div class="form-category">
+                    <label for="gender" class="category-title">Gender</label>
+                    <select id="gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <button id="search-button">Search</button>
+            </div>
+                    
+        </aside>
+<!-- Adopt a Pet container with dog adoption API showcase-->
+        <main class="w-full flex flex-col items-center">
+            <h2 class="mb-20">Adopt-A-Pet</h2>
+            <div class="dog-cards flex flex-wrap justify-center gap-5">
+
+            </div>
         </main>
     </div>
 
+    <dialog class="modal h-full w-1/2 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal">
+        <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-3xl mb-2">
+        <img class="dog-image" alt="Dog Image">
+        </div>
+        <div class="dog-information flex flex-col">
+        <h1 class="dog-name text-center text-5xl mt-2 mb-3"></h1>
+        <p class="dog-description text-center text-xl h-1/4 ml-2 mr-2"></p>
+        <p class="dog-age text-center text-xl mt-2"></p>
+        <p class="dog-breed text-center text-xl mt-2"></p>
+        <div class="all-ninja-api-info flex justify-evenly mt-5">
+            <div class="ninja-api-information1">
+            </div>
+            <div class="ninja-api-information2">
+            
+            </div>
+        </div>
+        
+        </div>
+        <button type="button" class="close-modal text-white bg-gray-800 hover-bg-gray-900 focus-outline-none focus-ring-4 focus-ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark-bg-gray-800 dark-hover-bg-gray-700 dark-focus-ring-gray-700 dark-border-gray-700 absolute top-5 right-5">X</button>
+    </dialog>
+    
     <footer>
         <p>&copy; 2023 Canine Crusaders. All rights reserved.</p>
     </footer>
-</body>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="./Develop/script.js"></script>
+</body>
 </html>
