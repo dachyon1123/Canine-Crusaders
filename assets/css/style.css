@@ -1,3 +1,4 @@
+/* Icon */
 
 .icon {
     position: absolute;
@@ -12,6 +13,7 @@
     margin-bottom: auto;
 }
 
+/* Header Title "Canine Crusaders" */
 header {
     position: relative;
     margin-left: 120px;
@@ -19,12 +21,7 @@ header {
     border-bottom: 1px solid #000;
 }
 
-
-.search-bar {
-    margin-bottom: 10px; /* Add spacing between search bars */
-}
-
-
+/* Aside Section */
 aside {
     width: 20%;
     height: fit-content;
@@ -32,16 +29,73 @@ aside {
     border: 1px solid #ccc;
 }
 
+/* Main Section */
 main {
     width: 100%;
     padding: 20px;
 }
 
-.search-bar {
-    max-height: 100px; /* Adjust the maximum height for scrolling */
-    overflow-y: auto;
-    padding: 5px;
+/* the search form as a whole on the aside section */
+.search-form {
+    text-align: center;
 }
+
+/* Labels in the search bar -- "Breed, Size, Age, Gender */
+.category-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    display: block;
+}
+
+/* a class for each form category's div */
+.form-category {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+
+/* Centers the text within select elements and their options and adds a border around the select elements. */
+/* Style for select elements within .form-category */
+.form-category select {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center; /* Center the text within the select */
+}
+
+/* Style for options within select elements */
+.form-category select option {
+    text-align: center; /* Center the text within each option */
+}
+
+/* centers the breed placeholder */
+#breed::placeholder {
+    text-align: center;
+}
+
+/* style for inputs within the form-category */
+.form-category input {
+    border: 1px solid #ccc; 
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* css for the search button */
+#search-button {
+    background-color: #007BFF; 
+    color: white; 
+    font-weight: bold; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border: none; 
+    cursor: pointer;
+    width: 100%;
+}
+
 
 /* The CSS for the modal itself, ensuring it covers other content */
 #modal {
@@ -64,3 +118,4 @@ main {
   .dog-card {
     cursor: pointer;
   }
+
