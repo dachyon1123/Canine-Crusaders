@@ -26,11 +26,14 @@ async function fetchToken() {
 }
 fetchDogs();
 
+const currentISODate = '2023-10-31T01:50:23.734Z'
+
+
 //Calls the petfinder api to give a list of dogs up for adoption
 async function fetchDogs () {
   let token = await fetchToken();
-
-  let url = "https://api.petfinder.com/v2/animals?type=dog&limit=100"
+  
+  let url = `https://api.petfinder.com/v2/animals?before=${currentISODate}&type=dog&limit=100`
 
   let res = await fetch(url, {
     headers: {
@@ -76,16 +79,21 @@ function createDogCards(dogs) {
     dogCard.on('click', function() {
       let dogModalName = $('.dog-name');
       let dogModalImage = $('.dog-image')
-      let dogModalDescription = $('.dog-description')
-      let dogBreed = $('.dog-breed')
-      let dogAge = $('.dog-age')
+      let dogModalDescription = $('.dog-description');
+      let dogBreed = $('.dog-breed');
+      let dogAge = $('.dog-age');
+      let email = $('.email');
+      let phone = $('.phone');
       ninjaApiInfo1.text('')
       ninjaApiInfo2.text('')
 
       dogModalName.text(dogArray[i].name)
       dogModalDescription.text(dogArray[i].description)
-      dogBreed.text(dogArray[i].breeds.primary)
-      dogAge.text(dogArray[i].age)
+      dogBreed.append(`Breed: ${dogArray[i].breeds.primary}`)
+      dogAge.append(`Age: ${dogArray[i].age}`)
+      email.append(`Email: ${dogArray[i].contact.email}`)
+      phone.append(`Phone: ${dogArray[i].contact.phone}`)
+
 
       
       dogModalImage.attr('src', dogArray[i].photos[0].full)
@@ -144,22 +152,22 @@ async function fetchDogInformation(name) {
 function dogNinjaApiName (dogs) {
   
   let dogBarkingLevel = $('<p>');
-  dogBarkingLevel.text(`Barking Level: ${dogs[0].barking}`)
+  dogBarkingLevel.text(`Barking Level: ${dogs[0].barking}/5`)
 
   let dogEnergyLevel =  $('<p>');
-  dogEnergyLevel.text(`Energy Level: ${dogs[0].energy}`)
+  dogEnergyLevel.text(`Energy Level: ${dogs[0].energy}/5`)
 
   let dogPlayfulness = $('<p>')
-  dogPlayfulness.text(`Playfulness: ${dogs[0].playfulness}`)
+  dogPlayfulness.text(`Playfulness: ${dogs[0].playfulness}/5`)
 
   let goodWithStrangers = $('<p>')
-  goodWithStrangers.text(`Good w/ Strangers: ${dogs[0].good_with_strangers}`)
+  goodWithStrangers.text(`Good w/ Strangers: ${dogs[0].good_with_strangers}/5`)
   
   let goodWithDogs = $('<p>')
-  goodWithDogs.text(`Good w/ Dogs: ${dogs[0].good_with_other_dogs}`)
+  goodWithDogs.text(`Good w/ Dogs: ${dogs[0].good_with_other_dogs}/5`)
 
   let goodWithChildren = $('<p>')
-  goodWithChildren.text(`Good w/ Children: ${dogs[0].good_with_children}`)
+  goodWithChildren.text(`Good w/ Children: ${dogs[0].good_with_children}/5`)
   
   ninjaApiInfo1.append(dogBarkingLevel)
   ninjaApiInfo1.append(dogEnergyLevel)

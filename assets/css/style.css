@@ -57,10 +57,12 @@ main {
   
   /* When the modal is being displayed, it should override the hidden display */
   #modal[open] {
-    display: block; /* Or whatever display mode you prefer */
+    display: block;
+    overflow-y: auto /* Or whatever display mode you prefer */
   }
   
   
   .dog-card {
     cursor: pointer;
   }
+
