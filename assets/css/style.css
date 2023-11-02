@@ -1,121 +1,102 @@
-/* Icon */
-
+:root {
+  --font-family1: Bangers;
+}
+body {
+  background-image: url("/assets/images/field-of-grass-1362858.jpg");
+  background-size: contain;
+}
+/* Pet ICON */
 .icon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
 }
 
 .icon img {
-    width: 120px;
-    border-radius: 50%;
-    margin-bottom: auto;
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: auto;
 }
 
-/* Header Title "Canine Crusaders" */
 header {
-    position: relative;
-    margin-left: 120px;
-    margin-top: 65px;
-    border-bottom: 1px solid #000;
+  position: relative;
+  margin-left: 120px;
+  margin-top: 65px;
+  border-bottom: 1px solid #000;
+}
+.h1 {
+  text-align: center;
+  font-size: 55px;
+  font-family: Bangers;
+  padding-bottom: 30px;
 }
 
-/* Aside Section */
+/*SEARCH CONTATINER */
+.search-bar {
+  margin-bottom: 10px; /* Add spacing between search bars */
+  text-align: center;
+}
+
 aside {
-    width: 20%;
-    height: fit-content;
-    padding: 20px;
-    border: 1px solid #ccc;
+  margin-top: 46px;
+  width: 20%;
+  height: fit-content;
+  padding: 20px;
+  border: 3px solid #ccc;
 }
 
-/* Main Section */
 main {
-    width: 100%;
-    padding: 20px;
+  width: 100%;
+  padding: 20px;
+}
+/* Customize title style */
+#title1 {
+  font-family: var(--font-family1);
+  font-size: 35px;
+  margin-left: 10%;
 }
 
-/* the search form as a whole on the aside section */
-.search-form {
-    text-align: center;
+.search-bar {
+  max-height: 100px; /* Adjust the maximum height for scrolling */
+  overflow-y: auto;
+  padding: 5px;
+  font-family: var(--font-family1);
 }
-
-/* Labels in the search bar -- "Breed, Size, Age, Gender */
-.category-title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-    display: block;
+/*Footer Title */
+footer p.footer {
+  background: #ccc;
+  font-size: 20px;
+  text-align: center;
+  font-family: var(--font-family1);
 }
-
-/* a class for each form category's div */
-.form-category {
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 15px;
-}
-
-
-/* Centers the text within select elements and their options and adds a border around the select elements. */
-/* Style for select elements within .form-category */
-.form-category select {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center; /* Center the text within the select */
-}
-
-/* Style for options within select elements */
-.form-category select option {
-    text-align: center; /* Center the text within each option */
-}
-
-/* centers the breed placeholder */
-#breed::placeholder {
-    text-align: center;
-}
-
-/* style for inputs within the form-category */
-.form-category input {
-    border: 1px solid #ccc; 
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* css for the search button */
-#search-button {
-    background-color: #007BFF; 
-    color: white; 
-    font-weight: bold; 
-    padding: 10px 20px; 
-    font-size: 16px; 
-    border: none; 
-    cursor: pointer;
-    width: 100%;
-}
-
-
 /* The CSS for the modal itself, ensuring it covers other content */
 #modal {
-    /* existing styles... */
-    position: fixed; /* Position it relative to the viewport */
-    z-index: 1000; /* High z-index so it is above other content */
-    left: 50%; /* Positions the left edge of the modal in the middle of the screen */
-    top: 50%; /* Positions the top edge of the modal in the middle of the screen */
-    transform: translate(-50%, -50%); /* Shifts the modal back by half its width and height to center it */
-    display: none; /* Start off hidden */
-    /* More of your styling... */
-  }
-  
-  /* When the modal is being displayed, it should override the hidden display */
-  #modal[open] {
-    display: block; /* Or whatever display mode you prefer */
-  }
-  
-  
-  .dog-card {
-    cursor: pointer;
-  }
+  /* existing styles... */
+  position: fixed; /* Position it relative to the viewport */
+  z-index: 1000; /* High z-index so it is above other content */
+  left: 50%; /* Positions the left edge of the modal in the middle of the screen */
+  top: 50%; /* Positions the top edge of the modal in the middle of the screen */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Shifts the modal back by half its width and height to center it */
+  display: none; /* Start off hidden */
+  /* More of your styling... */
+}
 
+/* When the modal is being displayed, it should override the hidden display */
+#modal[open] {
+  display: block; /* Or whatever display mode you prefer */
+}
+
+.dog-card {
+  cursor: pointer;
+}
+
+footer .icon1 {
+  width: 2%;
+  height: 5%;
+  justify-content: end;
+  padding-right: 30px;
+}
