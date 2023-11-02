@@ -1,9 +1,174 @@
+const commonDogBreedsAlphabetical = [
+  'Affenpinscher',
+  'Afghan Hound',
+  'Airedale Terrier',
+  'Akita',
+  'Alaskan Malamute',
+  'American Bulldog',
+  'American Cocker Spaniel',
+  'American Eskimo Dog',
+  'American Foxhound',
+  'American Pit Bull Terrier',
+  'American Staffordshire Terrier',
+  'American Water Spaniel',
+  'Anatolian Shepherd Dog',
+  'Australian Cattle Dog',
+  'Australian Shepherd',
+  'Australian Terrier',
+  'Basenji',
+  'Basset Hound',
+  'Beagle',
+  'Bearded Collie',
+  'Bedlington Terrier',
+  'Belgian Malinois',
+  'Bernese Mountain Dog',
+  'Bichon Frise',
+  'Black and Tan Coonhound',
+  'Bloodhound',
+  'Border Collie',
+  'Border Terrier',
+  'Borzoi',
+  'Boston Terrier',
+  'Boxer',
+  'Boykin Spaniel',
+  'Brittany',
+  'Brussels Griffon',
+  'Bulldog',
+  'Bullmastiff',
+  'Cairn Terrier',
+  'Cane Corso',
+  'Cardigan Welsh Corgi',
+  'Cavalier King Charles Spaniel',
+  'Chesapeake Bay Retriever',
+  'Chihuahua',
+  'Chinese Crested',
+  'Chinese Shar-Pei',
+  'Chow Chow',
+  'Clumber Spaniel',
+  'Cocker Spaniel',
+  'Collie',
+  'Curly-Coated Retriever',
+  'Dachshund',
+  'Dalmatian',
+  'Doberman Pinscher',
+  'Dogue de Bordeaux',
+  'English Bulldog',
+  'English Cocker Spaniel',
+  'English Setter',
+  'English Springer Spaniel',
+  'Flat-Coated Retriever',
+  'French Bulldog',
+  'German Shepherd Dog',
+  'German Shorthaired Pointer',
+  'Golden Retriever',
+  'Gordon Setter',
+  'Great Dane',
+  'Great Pyrenees',
+  'Greater Swiss Mountain Dog',
+  'Havanese',
+  'Ibizan Hound',
+  'Irish Setter',
+  'Irish Water Spaniel',
+  'Irish Wolfhound',
+  'Italian Greyhound',
+  'Jack Russell Terrier',
+  'Japanese Chin',
+  'Keeshond',
+  'Labrador Retriever',
+  'Lhasa Apso',
+  'Maltese',
+  'Mastiff',
+  'Miniature Bull Terrier',
+  'Miniature Pinscher',
+  'Miniature Schnauzer',
+  'Neapolitan Mastiff',
+  'Newfoundland',
+  'Norfolk Terrier',
+  'Norwegian Buhund',
+  'Norwegian Elkhound',
+  'Norwich Terrier',
+  'Nova Scotia Duck Tolling Retriever',
+  'Old English Sheepdog',
+  'Papillon',
+  'Pekingese',
+  'Pembroke Welsh Corgi',
+  'Pit Bull Terrier',
+  'Pointer',
+  'Pomeranian',
+  'Poodle',
+  'Portuguese Water Dog',
+  'Pug',
+  'Puli',
+  'Rhodesian Ridgeback',
+  'Rottweiler',
+  'Saint Bernard',
+  'Saluki',
+  'Samoyed',
+  'Schipperke',
+  'Scottish Deerhound',
+  'Scottish Terrier',
+  'Shetland Sheepdog',
+  'Shiba Inu',
+  'Shih Tzu',
+  'Siberian Husky',
+  'Silky Terrier',
+  'Skye Terrier',
+  'Staffordshire Bull Terrier',
+  'Standard Schnauzer',
+  'Sussex Spaniel',
+  'Tibetan Mastiff',
+  'Tibetan Spaniel',
+  'Tibetan Terrier',
+  'Toy Fox Terrier',
+  'Vizsla',
+  'Weimaraner',
+  'Welsh Terrier',
+  'West Highland White Terrier',
+  'Whippet',
+  'Wire Fox Terrier',
+  'Yorkshire Terrier',
+];
+
 let dogModal = $('#modal')
 let ninjaApiInfo1 = $('.ninja-api-information1')
 let ninjaApiInfo2 = $('.ninja-api-information2')
 let modalCloseButton = $('.close-modal')
 
+$(function() {
+  let currentDate = new Date();
+  let currentDateFormatted = dayjs(currentDate).format('YYYY-MM-DD')
+  $('#start').attr('max', currentDateFormatted)
+  $('#start').attr('value', currentDateFormatted)
+})
 
+
+$(function() {
+  commonDogBreedsAlphabetical.forEach(breed => {
+    let breedList = $('#breed');
+    let newOption = $('<option>');
+    newOption.text(breed).attr('value', breed);
+    
+    breedList.append(newOption)
+  })
+})
+
+//Adds functionality to the filter
+$('.dog-form').on('submit', (event) => {
+  event.preventDefault()
+
+  $('.dog-cards').text('')
+
+  let dogBreed = $('#breed').val();
+  let dogSize = $('#size').val();
+  let dogAge = $('#age').val();
+  let dogGender = $('#gender').val();
+
+  let dateString = $('#start').val();
+  let date = new Date(dateString)
+  let isoString = date.toISOString();
+
+  fetchDogs(dogSize, dogAge, dogGender, dogBreed, isoString)
+})
 
 
 //Fetches the token that is required for the api call
@@ -24,13 +189,20 @@ async function fetchToken() {
   let data = await res.json();
   return data['access_token']
 }
-fetchDogs();
+
+
 
 //Calls the petfinder api to give a list of dogs up for adoption
-async function fetchDogs () {
+async function fetchDogs (size, age, gender, breed, date) {
   let token = await fetchToken();
 
-  let url = "https://api.petfinder.com/v2/animals?type=dog&limit=100"
+  size = size || '';
+  age = age || '';
+  gender = gender || '';
+  breed = breed || '';
+  date = date || '';
+  
+  let url = `https://api.petfinder.com/v2/animals?type=dog&limit=100&size=${size}&age=${age}&gender=${gender}&breed=${breed}&before=${date}`
 
   let res = await fetch(url, {
     headers: {
@@ -41,8 +213,7 @@ async function fetchDogs () {
   createDogCards(data)
 }
 
-//Fetches the list of dogs from the api
-
+fetchDogs();
 
 
 //Creates the dog cards to the page and adds a modal for each one
@@ -74,18 +245,30 @@ function createDogCards(dogs) {
     dogCardDiv.append(dogCard)
 
     dogCard.on('click', function() {
+      $('.main-container').removeClass('flex').addClass('hidden')
+      $('.footer').addClass('hidden');
+      $('.header').addClass('hidden');
+      $('body').addClass('bg-sky-100')
       let dogModalName = $('.dog-name');
       let dogModalImage = $('.dog-image')
-      let dogModalDescription = $('.dog-description')
-      let dogBreed = $('.dog-breed')
-      let dogAge = $('.dog-age')
+      let dogModalDescription = $('.dog-description');
+      let dogBreed = $('.dog-breed-info');
+      let dogAge = $('.dog-age-info');
+      let email = $('.dog-email-info');
+      let phone = $('.dog-phone-info');
+      let dateAdded = $('.dateAdded');
       ninjaApiInfo1.text('')
       ninjaApiInfo2.text('')
 
       dogModalName.text(dogArray[i].name)
       dogModalDescription.text(dogArray[i].description)
-      dogBreed.text(dogArray[i].breeds.primary)
-      dogAge.text(dogArray[i].age)
+
+      dogBreed.text('').append(`${dogArray[i].breeds.primary}`)
+      dogAge.text('').append(`${dogArray[i].age}`)
+      email.text('').append(`${dogArray[i].contact.email}`)
+      phone.text('').append(`${dogArray[i].contact.phone}`)
+      dateAdded.text('').append(` Published on ${dayjs(dogArray[i].published_at).format('MM/DD/YYYY')}`)
+
 
       
       dogModalImage.attr('src', dogArray[i].photos[0].full)
@@ -102,14 +285,20 @@ function createDogCards(dogs) {
 //Closes modal when X button is pressed in top right of modal
 modalCloseButton.on('click', function() {
   dogModal.hide();
-  
+  $('.main-container').removeClass('hidden').addClass('flex')
+  $('.footer').removeClassClass('hidden');
+  $('.header').removeClass('hidden');
+  $('body').removeClass('bg-sky-100')
 })
 
 //Closes modal when esc is pressed
 $(document).keydown(function(event) {
   if (event.which == 27) {
       dogModal.hide(); 
-      
+      $('.main-container').removeClass('hidden').addClass('flex')
+      $('.footer').removeClass('hidden');
+      $('.header').removeClass('hidden');
+      $('body').removeClass('bg-sky-100')
   } 
 });
 
@@ -238,3 +427,7 @@ customSelects.forEach(customSelect => {
         }
     });
 });
+
+
+
+
