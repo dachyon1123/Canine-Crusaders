@@ -295,7 +295,7 @@ function createDogCards(dogs) {
       let favoritesButton = $('<button>').addClass('mr-10 p-2 border-2 border-zinc-900').text('Favorite')
       favoritesDiv.append(favoritesButton)
 
-     if (favoritesArray.includes(id)) {
+      if (favoritesArray.includes(id)) {
         favoritesButton.addClass('bg-yellow-600')
       }
 

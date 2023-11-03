@@ -1,17 +1,21 @@
+/* Variables */
 :root {
   --font-family1: Bangers;
 }
+
+/* Reset and Defaults */
 body {
   background-image: url("/assets/images/field-of-grass-1362858.jpg");
   background-size: contain;
 }
 
-/* Pet ICON */
+/* Icon styles */
 .icon {
   position: absolute;
   top: 10px;
   left: 10px;
   z-index: 1;
+  margin-top: 25px;
 }
 
 .icon img {
@@ -20,29 +24,40 @@ body {
   margin-bottom: auto;
 }
 
-/* Header Title "Canine Crusaders" */
+/* Header styles */
 header {
   position: relative;
-  margin-left: 120px;
   margin-top: 65px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #000;  
 }
 
-/* Customize title style */
 #title1 {
   font-family: var(--font-family1);
   font-size: 35px;
-  margin-left: 10%;
+  margin-left: 34%;
 }
 
-/* Aside Section */
+/* Main content styles */
+main {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Aside styles */
 aside {
   width: 20%;
   height: fit-content;
   padding: 20px;
-  border: 1px solid #ccc;
+  border-right: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid black;
 }
 
+select, 
+input {
+  border-radius: 10px;
+}
+
+/* Section Titles */
 .h1 {
   text-align: center;
   font-size: 55px;
@@ -50,18 +65,11 @@ aside {
   padding-bottom: 30px;
 }
 
-/* Main Section */
-main {
-  width: 100%;
-  padding: 20px;
-}
-
-/* the search form as a whole on the aside section */
+/* Form styles */
 .search-form {
   text-align: center;
 }
 
-/* Labels in the search bar -- "Breed, Size, Age, Gender */
 .category-title {
   text-align: center;
   font-weight: bold;
@@ -69,42 +77,27 @@ main {
   display: block;
 }
 
-/* a class for each form category's div */
 .form-category {
   text-align: center;
   margin: 0 auto;
   margin-bottom: 15px;
 }
 
-/* Centers the text within select elements and their options and adds a border around the select elements. */
-/* Style for select elements within .form-category */
-.form-category select {
-  border: 1px solid #ccc;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center; /* Center the text within the select */
-}
-
-/* Style for options within select elements */
-.form-category select option {
-  text-align: center; /* Center the text within each option */
-}
-
-/* centers the breed placeholder */
-#breed::placeholder {
-  text-align: center;
-}
-
-/* style for inputs within the form-category */
+.form-category select,
 .form-category input {
   border: 1px solid #ccc;
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
+  text-align-last: center; /* for aligning the text in select to the center in some browsers */
 }
 
-/* css for the search button */
+/* The ::placeholder selector is used to select and style the placeholder text of an input field. */
+#breed::placeholder {
+  text-align: center;
+}
+
+/* Search button styles */
 #search-button {
   background-color: #007bff;
   color: white;
@@ -116,32 +109,34 @@ main {
   width: 100%;
 }
 
-
+/* Modal styles */
 #modal {
-    position: fixed; 
-    z-index: 1000; 
-    left: 50%;
-    top: 50%; 
-    transform: translate(-50%, -50%);
-    display: none; 
-    height: 99%;
-  }
-  
-  #modal[open] {
-    display: block;
-    overflow-y: auto 
-  }
-  
-  
-  .dog-card {
-    cursor: pointer;
-  }
-
-/* When the modal is being displayed, it should override the hidden display */
-#modal[open] {
-  display: block; /* Or whatever display mode you prefer */
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  height: 99%;
 }
 
+#modal[open] {
+  display: block; /* Or whatever display mode you prefer */
+  overflow-y: auto;
+}
+
+/* Card styles */
 .dog-card {
   cursor: pointer;
+}
+
+
+.favorites-button {
+  background-image: url('assets/images/star-regular.svg'); /* Replace with your image path */
+  background-size: cover; /* Cover the entire area of the button */
+  background-position: center; /* Center the background image */
+  border: none; /* Remove the border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding around the text */
+  cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
 }
