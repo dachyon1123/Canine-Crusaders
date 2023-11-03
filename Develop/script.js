@@ -209,32 +209,32 @@ const customSelects = document.querySelectorAll(".custom-select");
 // Loop through each custom select element
 customSelects.forEach(customSelect => {
     // Find the trigger (the part users click to open the options)
-    const selectTrigger = customSelect.querySelector(".select-trigger");
+const selectTrigger = customSelect.querySelector(".select-trigger");
     // Find the options (the list of selectable items)
-    const selectOptions = customSelect.querySelector(".select-options");
+const selectOptions = customSelect.querySelector(".select-options");
     // Find all option elements within the custom select
-    const selectOptionElements = customSelect.querySelectorAll(".select-option");
+const selectOptionElements = customSelect.querySelectorAll(".select-option");
 
     // Add a click event listener to the trigger
-    selectTrigger.addEventListener("click", function () {
-        selectOptions.style.display = selectOptions.style.display === "block" ? "none" : "block";
-    });
+selectTrigger.addEventListener("click", function () {
+selectOptions.style.display = selectOptions.style.display === "block" ? "none" : "block";
+});
 
-    selectOptionElements.forEach(option => {
-        option.addEventListener("click", function (e) {
-            e.stopPropagation(); // Prevent the click event from propagating to the parent trigger
-            // Update the trigger text with the selected option text
-            const selectedText = this.textContent;
-            selectTrigger.textContent = selectedText;
-            // Hide the options
-            selectOptions.style.display = "none";
-        });
-    });
+selectOptionElements.forEach(option => {
+  option.addEventListener("click", function (e) {
+  e.stopPropagation(); // Prevent the click event from propagating to the parent trigger
+      // Update the trigger text with the selected option text
+  const selectedText = this.textContent;
+  selectTrigger.textContent = selectedText;
+          // Hide the options
+   selectOptions.style.display = "none";
+       });
+   });
 
     // Close the options when clicking outside
     document.addEventListener("click", function (e) {
-        if (e.target !== selectTrigger) {
-            selectOptions.style.display = "none";
-        }
-    });
-});
+         if (e.target !== selectTrigger) {
+             selectOptions.style.display = "none";
+         }
+     });
+ });
