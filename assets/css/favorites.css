@@ -1,0 +1,72 @@
+/* Variables */
+:root {
+    --font-family1: Bangers;
+  }
+  
+  
+  /* Icon styles */
+  .icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    margin-top: 25px;
+  }
+  
+  .icon img {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: auto;
+  }
+  
+  /* Header styles */
+  header {
+    position: relative;
+    margin-top: 65px;
+    border-bottom: 1px solid #000;  
+  }
+  
+  #title1 {
+    font-family: var(--font-family1);
+    font-size: 35px;
+    margin-left: 34%;
+  }
+  
+  /* Main content styles */
+  main {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  
+  /* Modal styles */
+  #modal {
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    height: 99%;
+  }
+  
+  #modal[open] {
+    display: block; /* Or whatever display mode you prefer */
+    overflow-y: auto;
+  }
+  
+  /* Card styles */
+  .dog-card {
+    cursor: pointer;
+  }
+  
+  
+  .favorites-button {
+    background-image: url('assets/images/star-regular.svg'); /* Replace with your image path */
+    background-size: cover; /* Cover the entire area of the button */
+    background-position: center; /* Center the background image */
+    border: none; /* Remove the border */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding around the text */
+    cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
+  }

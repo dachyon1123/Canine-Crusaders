@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/favorites.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
@@ -14,16 +14,51 @@
 </head>
 
 <body>
-    
+    <div class="main-container flex">       
+            <main class="w-full flex flex-col">
+                <h2 class="mb-10" id="title1">Adopt-A-Pet</h2>
+                <div class="dog-cards flex justify-center flex-wrap gap-5 text-center">
+
+                </div>
+            </main>  
+    </div>
 
 
 
 
 
+    <dialog class="modal w-1/2 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal" data-modal-background="static">
+        <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-2xl mb-2">
+            
+            <img class="dog-image" alt="Dog Image">
+        </div>
+        <div class="dog-information flex flex-col">
+            <div class="name-favorite flex items-center justify-between">
+                <h1 class="dog-name ml-5 text-5xl mt-2 mb-3"></h1>
+                <div class="favorites">
+                    
+                </div>
+            </div>
+            <span class="dog-description ml-5 text-xl h-1/4 w-3/4"></span>
+            <span class="dog-age flex gap-2 text-xl ml-5 mt-2"><strong>Age: </strong><p class="dog-age-info"></p></span>
+            <span class="dog-breed flex gap-2 text-xl ml-5 mt-2"><strong>Breed: </strong><p class="dog-breed-info"></p></span>
+            <span class="email flex gap-2 text-xl ml-5 mt-2"><strong>Email: </strong><p class="dog-email-info"></p></span>
+            <span class="phone flex gap-2 text-xl ml-5 mt-2"><strong>Phone: </strong><p class="dog-phone-info"></p></span>
 
+            <div class="all-ninja-api-info font-sans flex flex-col mt-5 ml-5 gap-2">
+                <div class="ninja-api-information1 font-mono">
 
+                </div>
+                <div class="ninja-api-information2 font-mono">
+            
+                </div>
+            </div>
 
-
+            <span class="dateAdded absolute inset-x-0 bottom-2 text-sm text-center"></span>
+        
+        </div>
+        <button type="button" class="close-modal text-white bg-gray-800 hover-bg-gray-900 focus-outline-none focus-ring-4 focus-ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark-bg-gray-800 dark-hover-bg-gray-700 dark-focus-ring-gray-700 dark-border-gray-700 absolute top-5 right-5">X</button>
+    </dialog>
 
 
 
@@ -32,7 +67,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/Develop/script.js"></script>
+    <script src="/Develop/favorites.js"></script>
 </body>
 
 </html>
