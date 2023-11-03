@@ -264,7 +264,9 @@ function createDogCards(dogs) {
       $('.footer').addClass('hidden');
       $('.header').addClass('hidden');
       $('body').css('background-image', 'none');
-      $('body').addClass('bg-sky-100')
+      $('body').addClass('bg-neutral-600')
+      $('.icon').addClass('hidden')
+      $('header').addClass('hidden')
 
       //Accesses elements from the HTML
       let dogModalName = $('.dog-name');
@@ -345,7 +347,7 @@ modalCloseButton.on('click', function() {
   $('.main-container').removeClass('hidden').addClass('flex')
   $('.footer').removeClass('hidden');
   $('.header').removeClass('hidden');
-  $('body').removeClass('bg-sky-100')
+  $('body').removeClass('bg-neutral-600')
   $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
 })
 
@@ -358,8 +360,10 @@ $(document).keydown(function(event) {
       $('.main-container').removeClass('hidden').addClass('flex')
       $('.footer').removeClass('hidden');
       $('.header').removeClass('hidden');
-      $('body').removeClass('bg-sky-100')
+      $('body').removeClass('bg-neutral-600')
       $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
+      $('.icon').removeClass('hidden')
+      $('header').removeClass('hidden')
   } 
 });
 
