@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/favorites.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
@@ -12,20 +12,28 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
     <title>Favorites</title>
 </head>
-
 <body>
-    <div class="main-container flex">       
-            <main class="w-full flex flex-col">
-                <h2 class="mb-10" id="title1">Adopt-A-Pet</h2>
-                <div class="dog-cards flex justify-center flex-wrap gap-5 text-center">
-
-                </div>
-            </main>  
+    <!--Icon-->
+    <div class="icon">
+        <img src="./assets/images/dog print and hand.jpeg" alt="Paw Print Icon">
     </div>
+    <!--Header Title-->
+    <header class="h-1/4">
+        <h1 class="h1">Canine Crusaders</h1>
+        <nav class="absolute right-36 top-20 font-bold text-2xl">
+            <a class="mr-5" href="./index.html">Home</a> 
+            <a class="favorties-page" href="./favorites.html">Favorites</a></li>
+        </nav>
+    </header>
+    <div class="main-container flex">
+        <!-- Adopt a Pet container with dog adoption API showcase-->
+        <main class="w-full flex flex-col">
+            <h2 class="mb-10" id="title2"><span id="red-heart">&hearts;</span> Favorites <span id="red-heart">&hearts;</span></h2>
+            <div class="dog-cards flex justify-center flex-wrap gap-5 text-center">
 
-
-
-
+            </div>
+        </main>
+    </div>
 
     <dialog class="modal w-1/2 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal" data-modal-background="static">
         <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-2xl mb-2">
@@ -59,15 +67,15 @@
         </div>
         <button type="button" class="close-modal text-white bg-gray-800 hover-bg-gray-900 focus-outline-none focus-ring-4 focus-ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark-bg-gray-800 dark-hover-bg-gray-700 dark-focus-ring-gray-700 dark-border-gray-700 absolute top-5 right-5">X</button>
     </dialog>
-
-
-
-
-
+    
+    <footer class="footer">
+        <p>&copy; 2023 Canine Crusaders. All rights reserved.</p>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/Develop/favorites.js"></script>
+    <script src="./Develop/script.js"></script>
+    <script src="./Develop/favorites.js"></script>
 </body>
 
 </html>
