@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
     <title>Canine Crusaders</title>
 </head>
+
 <body class="w-screen">
- <!--Icon-->
-    <div class="header icon">
+    <!--Icon-->
+    <div class="icon">
         <img src="./assets/images/dog print and hand.jpeg" alt="Paw Print Icon">
     </div>
-<!--Header Title-->
-    <header class="header h-1/4">
-        <h1>Canine Crusaders</h1>
+    <!--Header Title-->
+    <header class="h-1/4">
+        <h1 class="h1">Canine Crusaders</h1>
     </header>
-    <div class ="main-container flex">
-<!--Aside Search Bar-->
+    <div class="main-container flex">
+        <!--Aside Search Bar-->
         <aside>
             <form class="dog-form" action="">
                 <div class="search-form">
@@ -66,10 +71,10 @@
             </form>
                     
         </aside>
-<!-- Adopt a Pet container with dog adoption API showcase-->
-        <main class="w-full flex flex-col items-center">
-            <h2 class="mb-20">Adopt-A-Pet</h2>
-            <div class="dog-cards flex flex-wrap justify-center gap-5">
+        <!-- Adopt a Pet container with dog adoption API showcase-->
+        <main class="w-full flex flex-col">
+            <h2 class="mb-20" id="title1">Adopt-A-Pet</h2>
+            <div class="dog-cards flex flex-wrap gap-5 text-center">
 
             </div>
         </main>
@@ -106,7 +111,9 @@
         <p>&copy; 2023 Canine Crusaders. All rights reserved.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="./Develop/script.js"></script>
 </body>
+
 </html>

@@ -133,41 +133,44 @@ let dogModal = $('#modal')
 let ninjaApiInfo1 = $('.ninja-api-information1')
 let ninjaApiInfo2 = $('.ninja-api-information2')
 let modalCloseButton = $('.close-modal')
+let favoritesArray = [];
 
+// Initialization on document ready
 $(function() {
+  initializeDateInputs();
+  populateBreedOptions();
+});
+
+// Initialize date inputs with current date
+function initializeDateInputs() {
   let currentDate = new Date();
-  let currentDateFormatted = dayjs(currentDate).format('YYYY-MM-DD')
-  $('#start').attr('max', currentDateFormatted)
-  $('#start').attr('value', currentDateFormatted)
-})
+  let currentDateFormatted = dayjs(currentDate).format('YYYY-MM-DD');
+  $('#start').attr('max', currentDateFormatted).attr('value', currentDateFormatted);
+}
 
-
-$(function() {
+// Populate breed options in the select element
+function populateBreedOptions() {
+  const breedList = $('#breed');
   commonDogBreedsAlphabetical.forEach(breed => {
-    let breedList = $('#breed');
-    let newOption = $('<option>');
-    newOption.text(breed).attr('value', breed);
-    
-    breedList.append(newOption)
-  })
-})
+    breedList.append($('<option>').text(breed).attr('value', breed));
+  });
+}
 
 //Adds functionality to the filter
 $('.dog-form').on('submit', (event) => {
   event.preventDefault()
 
-  $('.dog-cards').text('')
+  $('.dog-cards').empty();
 
+  //Gather form data
   let dogBreed = $('#breed').val();
   let dogSize = $('#size').val();
   let dogAge = $('#age').val();
   let dogGender = $('#gender').val();
-
-  let dateString = $('#start').val();
-  let date = new Date(dateString)
-  let isoString = date.toISOString();
-
-  fetchDogs(dogSize, dogAge, dogGender, dogBreed, isoString)
+  let dateString = dayjs($('#start').val()).add(1, 'day').format('YYYY-MM-DD')
+  
+  let date = new Date(dateString).toISOString();
+  fetchDogs(dogSize, dogAge, dogGender, dogBreed, date)
 })
 
 
@@ -216,39 +219,49 @@ async function fetchDogs (size, age, gender, breed, date) {
 fetchDogs();
 
 
+
+
+
+
 //Creates the dog cards to the page and adds a modal for each one
 function createDogCards(dogs) {
+  //Assigns the array of dogs from the API to a variable
   let dogArray = dogs.animals
-  console.log(dogArray)
   
-  
+  //Creates dog cards for the amount of dogs in the array that is fetched from petfinder API
   for (let i = 0; i<dogArray.length; ++i) {
+    //Gets the .dog-cards div from the HTML and assigns it to dogCardDiv
     let dogCardDiv = $('.dog-cards');
     
-
+    //Skips the dog if there is no photo associated with it
     if (dogArray[i].photos.length === 0) {
       continue
     }
 
-    let dogCard = $('<div>');
-    dogCard.addClass('dog-card flex flex-col justify-center h-80 w-80')
+    //Creates the card for the dog and assigns classes for formatting
+    let dogCard = $('<div>').addClass('dog-card flex flex-col justify-center h-80 w-80')
 
+    //Creates the image div within the dog card div and formats it
     let dogImageDiv = $('<div>').addClass('h-full overflow-hidden rounded-xl mr-2 ml-2')
     
-    let dogImage = $('<img>')
-    dogImage.attr('src', dogArray[i].photos[0].full)
-    dogImage.addClass('h-full w-full')
+    //Creates the image container, adds the photo of the dog from the array, and formats it
+    let dogImage = $('<img>').attr('src', dogArray[i].photos[0].full).addClass('h-full w-full')
   
-
+    //Appends the variables above to the respective containers
     dogCard.append(dogImageDiv)
     dogImageDiv.append(dogImage)
     dogCardDiv.append(dogCard)
 
+    //Adds an event handler to the dog cards to open the modal
     dogCard.on('click', function() {
+      //Hides the background when modal opens
       $('.main-container').removeClass('flex').addClass('hidden')
       $('.footer').addClass('hidden');
       $('.header').addClass('hidden');
+      $('body').css('background-image', 'none');
       $('body').addClass('bg-sky-100')
+
+      //Accesses elements from the HTML
       let dogModalName = $('.dog-name');
       let dogModalImage = $('.dog-image')
       let dogModalDescription = $('.dog-description');
@@ -256,54 +269,94 @@ function createDogCards(dogs) {
       let dogAge = $('.dog-age-info');
       let email = $('.dog-email-info');
       let phone = $('.dog-phone-info');
-      let dateAdded = $('.dateAdded');
+      let dateAdded = $('.dateAdded');  
+      let favoritesDiv = $('.favorites')
+      let id = dogArray[i].id
+
+      //Resets NinjaAPI information
       ninjaApiInfo1.text('')
       ninjaApiInfo2.text('')
 
+      //Adds dog name and description to the modal
       dogModalName.text(dogArray[i].name)
       dogModalDescription.text(dogArray[i].description)
 
+      //Adds dog breed, age, email, phone, and published date to the modal
       dogBreed.text('').append(`${dogArray[i].breeds.primary}`)
       dogAge.text('').append(`${dogArray[i].age}`)
       email.text('').append(`${dogArray[i].contact.email}`)
       phone.text('').append(`${dogArray[i].contact.phone}`)
       dateAdded.text('').append(` Published on ${dayjs(dogArray[i].published_at).format('MM/DD/YYYY')}`)
 
-
-      
+      //Adds a photo of the dog to the modal
       dogModalImage.attr('src', dogArray[i].photos[0].full)
-      dogModalImage.addClass('')
+
+      favoritesDiv.empty();
+      let favoritesButton = $('<button>').addClass('mr-10 p-2 border-2 border-zinc-900').text('Favorite')
+      favoritesDiv.append(favoritesButton)
+
+     if (favoritesArray.includes(id)) {
+        favoritesButton.addClass('bg-yellow-600')
+      }
+
+
+
+      favoritesButton.on('click', function() {
+        if (!favoritesArray.includes(id)) {
+          favoritesArray.push(id);
+          console.log(favoritesArray)
+
+          favoritesButton.addClass('bg-yellow-600')
+        } else if (favoritesArray.includes(id)) {
+          let indexOfId = favoritesArray.indexOf(id)
+          favoritesArray.splice(indexOfId, 1)
+          console.log(favoritesArray)
+          
+          favoritesButton.removeClass('bg-yellow-600')
+        }
+      })
       
 
+
+
+
+      //Fetchs the NinjaAPI information toa dd to the modal
       fetchDogInformation(dogArray[i].breeds.primary)
-      
+
+      //Shows the modal
       dogModal.show();
     })
   }  
 }
 
-//Closes modal when X button is pressed in top right of modal
+//Closes modal when X button is pressed in top right of modal, as well as 
 modalCloseButton.on('click', function() {
   dogModal.hide();
+
+  //Unhides the content that was hidden from opening the modal
   $('.main-container').removeClass('hidden').addClass('flex')
-  $('.footer').removeClassClass('hidden');
+  $('.footer').removeClass('hidden');
   $('.header').removeClass('hidden');
   $('body').removeClass('bg-sky-100')
+  $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
 })
 
 //Closes modal when esc is pressed
 $(document).keydown(function(event) {
   if (event.which == 27) {
       dogModal.hide(); 
+      
+      //Unhides the content that was hidden from opening the modal
       $('.main-container').removeClass('hidden').addClass('flex')
       $('.footer').removeClass('hidden');
       $('.header').removeClass('hidden');
       $('body').removeClass('bg-sky-100')
+      $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
   } 
 });
 
 
-
+//Fetches the Ninja API
 async function fetchDogInformation(name) {
   try {
       const response = await fetch('https://api.api-ninjas.com/v1/dogs?name=' + encodeURIComponent(name), {
@@ -320,7 +373,6 @@ async function fetchDogInformation(name) {
 
       const result = await response.json();
       dogNinjaApiName(result);
-      console.log(result)
   } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
       noInformationFound()
@@ -329,26 +381,26 @@ async function fetchDogInformation(name) {
 
 
 
-
+//Appends information from NinjaAPI to the modal
 function dogNinjaApiName (dogs) {
   
   let dogBarkingLevel = $('<p>');
-  dogBarkingLevel.text(`Barking Level: ${dogs[0].barking}`)
+  dogBarkingLevel.text(`Barking Level: ${dogs[0].barking}/5`)
 
   let dogEnergyLevel =  $('<p>');
-  dogEnergyLevel.text(`Energy Level: ${dogs[0].energy}`)
+  dogEnergyLevel.text(`Energy Level: ${dogs[0].energy}/5`)
 
   let dogPlayfulness = $('<p>')
-  dogPlayfulness.text(`Playfulness: ${dogs[0].playfulness}`)
+  dogPlayfulness.text(`Playfulness: ${dogs[0].playfulness}/5`)
 
   let goodWithStrangers = $('<p>')
-  goodWithStrangers.text(`Good w/ Strangers: ${dogs[0].good_with_strangers}`)
+  goodWithStrangers.text(`Good w/ Strangers: ${dogs[0].good_with_strangers}/5`)
   
   let goodWithDogs = $('<p>')
-  goodWithDogs.text(`Good w/ Dogs: ${dogs[0].good_with_other_dogs}`)
+  goodWithDogs.text(`Good w/ Dogs: ${dogs[0].good_with_other_dogs}/5`)
 
   let goodWithChildren = $('<p>')
-  goodWithChildren.text(`Good w/ Children: ${dogs[0].good_with_children}`)
+  goodWithChildren.text(`Good w/ Children: ${dogs[0].good_with_children}/5`)
   
   ninjaApiInfo1.append(dogBarkingLevel)
   ninjaApiInfo1.append(dogEnergyLevel)
@@ -359,6 +411,7 @@ function dogNinjaApiName (dogs) {
   ninjaApiInfo2.append(goodWithChildren)
 }
 
+//Adds N/A to the NinjaAPI container if the dog breed can't be found via the API
 function noInformationFound() {
   let dogBarkingLevel = $('<p>');
   dogBarkingLevel.text(`Barking Level: N/A`)
@@ -387,46 +440,7 @@ function noInformationFound() {
   ninjaApiInfo2.append(goodWithChildren)
 }
 
-// The JS below is responsible for creating custom select boxes (dropdowns) with options. 
-//It converts regular <select> elements into styled custom selects, allowing users to click on
-// a trigger element to open a dropdown-like menu and select options.
 
-
-// Get all elements with the "custom-select" class
-const customSelects = document.querySelectorAll(".custom-select");
-
-// Loop through each custom select element
-customSelects.forEach(customSelect => {
-    // Find the trigger (the part users click to open the options)
-    const selectTrigger = customSelect.querySelector(".select-trigger");
-    // Find the options (the list of selectable items)
-    const selectOptions = customSelect.querySelector(".select-options");
-    // Find all option elements within the custom select
-    const selectOptionElements = customSelect.querySelectorAll(".select-option");
-
-    // Add a click event listener to the trigger
-    selectTrigger.addEventListener("click", function () {
-        selectOptions.style.display = selectOptions.style.display === "block" ? "none" : "block";
-    });
-
-    selectOptionElements.forEach(option => {
-        option.addEventListener("click", function (e) {
-            e.stopPropagation(); // Prevent the click event from propagating to the parent trigger
-            // Update the trigger text with the selected option text
-            const selectedText = this.textContent;
-            selectTrigger.textContent = selectedText;
-            // Hide the options
-            selectOptions.style.display = "none";
-        });
-    });
-
-    // Close the options when clicking outside
-    document.addEventListener("click", function (e) {
-        if (e.target !== selectTrigger) {
-            selectOptions.style.display = "none";
-        }
-    });
-});
 
 
 

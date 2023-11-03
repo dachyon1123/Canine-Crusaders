@@ -1,99 +1,119 @@
-/* Icon */
+:root {
+  --font-family1: Bangers;
+}
+body {
+  background-image: url("/assets/images/field-of-grass-1362858.jpg");
+  background-size: contain;
+}
 
+/* Pet ICON */
 .icon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
 }
 
 .icon img {
-    width: 120px;
-    border-radius: 50%;
-    margin-bottom: auto;
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: auto;
 }
 
 /* Header Title "Canine Crusaders" */
 header {
-    position: relative;
-    margin-left: 120px;
-    margin-top: 65px;
-    border-bottom: 1px solid #000;
+  position: relative;
+  margin-left: 120px;
+  margin-top: 65px;
+  border-bottom: 1px solid #000;
+}
+
+/* Customize title style */
+#title1 {
+  font-family: var(--font-family1);
+  font-size: 35px;
+  margin-left: 10%;
 }
 
 /* Aside Section */
 aside {
-    width: 20%;
-    height: fit-content;
-    padding: 20px;
-    border: 1px solid #ccc;
+  width: 20%;
+  height: fit-content;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.h1 {
+  text-align: center;
+  font-size: 55px;
+  font-family: Bangers;
+  padding-bottom: 30px;
 }
 
 /* Main Section */
 main {
-    width: 100%;
-    padding: 20px;
+  width: 100%;
+  padding: 20px;
 }
 
 /* the search form as a whole on the aside section */
 .search-form {
-    text-align: center;
+  text-align: center;
 }
 
 /* Labels in the search bar -- "Breed, Size, Age, Gender */
 .category-title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-    display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  display: block;
 }
 
 /* a class for each form category's div */
 .form-category {
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 15px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
 }
-
 
 /* Centers the text within select elements and their options and adds a border around the select elements. */
 /* Style for select elements within .form-category */
 .form-category select {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center; /* Center the text within the select */
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center; /* Center the text within the select */
 }
 
 /* Style for options within select elements */
 .form-category select option {
-    text-align: center; /* Center the text within each option */
+  text-align: center; /* Center the text within each option */
 }
 
 /* centers the breed placeholder */
 #breed::placeholder {
-    text-align: center;
+  text-align: center;
 }
 
 /* style for inputs within the form-category */
 .form-category input {
-    border: 1px solid #ccc; 
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* css for the search button */
 #search-button {
-    background-color: #007BFF; 
-    color: white; 
-    font-weight: bold; 
-    padding: 10px 20px; 
-    font-size: 16px; 
-    border: none; 
-    cursor: pointer;
-    width: 100%;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }
 
 
@@ -117,3 +137,11 @@ main {
     cursor: pointer;
   }
 
+/* When the modal is being displayed, it should override the hidden display */
+#modal[open] {
+  display: block; /* Or whatever display mode you prefer */
+}
+
+.dog-card {
+  cursor: pointer;
+}
