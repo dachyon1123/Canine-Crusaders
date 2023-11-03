@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
-    <title>Canine Crusaders</title>
+    <title>Favorites</title>
 </head>
-
 <body>
     <!--Icon-->
     <div class="icon">
@@ -27,57 +26,9 @@
         </nav>
     </header>
     <div class="main-container flex">
-        <!--Aside Search Bar-->
-        <aside>
-            <form class="dog-form" action="">
-                <div class="search-form">
-                    <div class="form-category">
-                        <label for="breed" class="category-title">Breed</label>
-                        <select id="breed">
-                            <option value="">Search Breed</option>
-                            
-                        </select>
-                    </div>
-                    <div class="form-category">
-                        <label for="size" class="category-title">Size</label>
-                        <select id="size">
-                            <option value="">Select Size</option>
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                            <option value="xlarge">X-Large</option>
-                        </select>
-                    </div>
-                    <div class="form-category">
-                        <label for="age" class="category-title">Age</label>
-                        <select id="age">
-                            <option value="">Select Age</option>
-                            <option value="baby">Baby</option>
-                            <option value="young">Young</option>
-                            <option value="adult">Adult</option>
-                            <option value="senior">Senior</option>
-                        </select>
-                    </div>
-                    <div class="form-category">
-                        <label for="gender" class="category-title">Gender</label>
-                        <select id="gender">
-                            <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-category mb-10">
-                        <label for="start" class="category-title">Published on</label>
-                        <input type="date" id="start" name="trip-start" value="" min="2021-12-31" max="" />
-                    </div>
-                    <input type="submit" value="Search" id="search-button">
-                </div>
-            </form>
-                    
-        </aside>
         <!-- Adopt a Pet container with dog adoption API showcase-->
         <main class="w-full flex flex-col">
-            <h2 class="mb-10" id="title1">Adopt-A-Pet</h2>
+            <h2 class="mb-10" id="title2"><span id="red-heart">&hearts;</span> Favorites <span id="red-heart">&hearts;</span></h2>
             <div class="dog-cards flex justify-center flex-wrap gap-5 text-center">
 
             </div>
@@ -124,6 +75,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="./Develop/script.js"></script>
+    <script src="./Develop/favorites.js"></script>
 </body>
 
 </html>
