@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
     <title>Canine Crusaders</title>
 </head>
 
@@ -24,42 +25,51 @@
     <div class="main-container flex">
         <!--Aside Search Bar-->
         <aside>
-            <div class="search-form">
-                <div class="form-category">
-                    <label for="breed" class="category-title">Breed</label>
-                    <input type="text" id="breed" placeholder="Enter Breed">
+            <form class="dog-form" action="">
+                <div class="search-form">
+                    <div class="form-category">
+                        <label for="breed" class="category-title">Breed</label>
+                        <select id="breed">
+                            <option value="">Search Breed</option>
+                            
+                        </select>
+                    </div>
+                    <div class="form-category">
+                        <label for="size" class="category-title">Size</label>
+                        <select id="size">
+                            <option value="">Select Size</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="xlarge">X-Large</option>
+                        </select>
+                    </div>
+                    <div class="form-category">
+                        <label for="age" class="category-title">Age</label>
+                        <select id="age">
+                            <option value="">Select Age</option>
+                            <option value="baby">Baby</option>
+                            <option value="young">Young</option>
+                            <option value="adult">Adult</option>
+                            <option value="senior">Senior</option>
+                        </select>
+                    </div>
+                    <div class="form-category">
+                        <label for="gender" class="category-title">Gender</label>
+                        <select id="gender">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-category">
+                        <label for="start">Start date:</label>
+                        <input type="date" id="start" name="trip-start" value="" min="2021-12-31" max="" />
+                    </div>
+                    <input type="submit" value="Search" id="search-button">
                 </div>
-                <div class="form-category">
-                    <label for="size" class="category-title">Size</label>
-                    <select id="size">
-                        <option value="">Select Size</option>
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                        <option value="xlarge">X-Large</option>
-                    </select>
-                </div>
-                <div class="form-category">
-                    <label for="age" class="category-title">Age</label>
-                    <select id="age">
-                        <option value="">Select Age</option>
-                        <option value="baby">Baby</option>
-                        <option value="young">Young</option>
-                        <option value="adult">Adult</option>
-                        <option value="senior">Senior</option>
-                    </select>
-                </div>
-                <div class="form-category">
-                    <label for="gender" class="category-title">Gender</label>
-                    <select id="gender">
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-                <button id="search-button">Search</button>
-            </div>
-
+            </form>
+                    
         </aside>
         <!-- Adopt a Pet container with dog adoption API showcase-->
         <main class="w-full flex flex-col">
@@ -70,29 +80,34 @@
         </main>
     </div>
 
-    <dialog class="modal h-full w-1/2 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal">
-        <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-3xl mb-2">
+    <dialog class="modal w-1/2 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal" data-modal-background="static">
+        <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-2xl mb-2">
             <img class="dog-image" alt="Dog Image">
         </div>
         <div class="dog-information flex flex-col">
-            <h1 class="dog-name text-center text-5xl mt-2 mb-3"></h1>
-            <p class="dog-description text-center text-xl h-1/4 ml-2 mr-2"></p>
-            <p class="dog-age text-center text-xl mt-2"></p>
-            <p class="dog-breed text-center text-xl mt-2"></p>
-            <div class="all-ninja-api-info flex justify-evenly mt-5">
-                <div class="ninja-api-information1">
-                </div>
-                <div class="ninja-api-information2">
+            <h1 class="dog-name ml-5 text-5xl mt-2 mb-3"></h1>
+            <span class="dog-description ml-5 text-xl h-1/4 w-3/4"></span>
+            <span class="dog-age flex gap-2 text-xl ml-5 mt-2"><strong>Age: </strong><p class="dog-age-info"></p></span>
+            <span class="dog-breed flex gap-2 text-xl ml-5 mt-2"><strong>Breed: </strong><p class="dog-breed-info"></p></span>
+            <span class="email flex gap-2 text-xl ml-5 mt-2"><strong>Email: </strong><p class="dog-email-info"></p></span>
+            <span class="phone flex gap-2 text-xl ml-5 mt-2"><strong>Phone: </strong><p class="dog-phone-info"></p></span>
 
+            <div class="all-ninja-api-info font-sans flex flex-col mt-5 ml-5 gap-2">
+                <div class="ninja-api-information1 font-mono">
+
+                </div>
+                <div class="ninja-api-information2 font-mono">
+            
                 </div>
             </div>
 
+            <span class="dateAdded absolute inset-x-0 bottom-2 text-sm text-center"></span>
+        
         </div>
-        <button type="button"
-            class="close-modal text-white bg-gray-800 hover-bg-gray-900 focus-outline-none focus-ring-4 focus-ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark-bg-gray-800 dark-hover-bg-gray-700 dark-focus-ring-gray-700 dark-border-gray-700 absolute top-5 right-5">X</button>
+        <button type="button" class="close-modal text-white bg-gray-800 hover-bg-gray-900 focus-outline-none focus-ring-4 focus-ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark-bg-gray-800 dark-hover-bg-gray-700 dark-focus-ring-gray-700 dark-border-gray-700 absolute top-5 right-5">X</button>
     </dialog>
-
-    <footer>
+    
+    <footer class="footer">
         <p>&copy; 2023 Canine Crusaders. All rights reserved.</p>
     </footer>
 
