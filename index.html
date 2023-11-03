@@ -13,7 +13,7 @@
     <title>Canine Crusaders</title>
 </head>
 
-<body class="w-screen">
+<body>
     <!--Icon-->
     <div class="icon">
         <img src="./assets/images/dog print and hand.jpeg" alt="Paw Print Icon">
@@ -21,6 +21,7 @@
     <!--Header Title-->
     <header class="h-1/4">
         <h1 class="h1">Canine Crusaders</h1>
+        <a class="favorties-page" href="./pages/favorites.html">Favorites</a>
     </header>
     <div class="main-container flex">
         <!--Aside Search Bar-->
@@ -62,8 +63,8 @@
                             <option value="female">Female</option>
                         </select>
                     </div>
-                    <div class="form-category">
-                        <label for="start">Start date:</label>
+                    <div class="form-category mb-10">
+                        <label for="start" class="category-title">Published on</label>
                         <input type="date" id="start" name="trip-start" value="" min="2021-12-31" max="" />
                     </div>
                     <input type="submit" value="Search" id="search-button">
@@ -73,8 +74,8 @@
         </aside>
         <!-- Adopt a Pet container with dog adoption API showcase-->
         <main class="w-full flex flex-col">
-            <h2 class="mb-20" id="title1">Adopt-A-Pet</h2>
-            <div class="dog-cards flex flex-wrap gap-5 text-center">
+            <h2 class="mb-10" id="title1">Adopt-A-Pet</h2>
+            <div class="dog-cards flex justify-center flex-wrap gap-5 text-center">
 
             </div>
         </main>
@@ -82,10 +83,16 @@
 
     <dialog class="modal w-1/2 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal" data-modal-background="static">
         <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-2xl mb-2">
+            
             <img class="dog-image" alt="Dog Image">
         </div>
         <div class="dog-information flex flex-col">
-            <h1 class="dog-name ml-5 text-5xl mt-2 mb-3"></h1>
+            <div class="name-favorite flex items-center justify-between">
+                <h1 class="dog-name ml-5 text-5xl mt-2 mb-3"></h1>
+                <div class="favorites">
+                    
+                </div>
+            </div>
             <span class="dog-description ml-5 text-xl h-1/4 w-3/4"></span>
             <span class="dog-age flex gap-2 text-xl ml-5 mt-2"><strong>Age: </strong><p class="dog-age-info"></p></span>
             <span class="dog-breed flex gap-2 text-xl ml-5 mt-2"><strong>Breed: </strong><p class="dog-breed-info"></p></span>
