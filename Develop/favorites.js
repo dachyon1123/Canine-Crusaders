@@ -255,7 +255,7 @@ $(document).keydown(function(event) {
     
     //Unhides the content that was hidden from opening the modal
     $('.main-container').removeClass('hidden').addClass('flex')
-    $('body').removeClass('bg-sky-100') 
+    $('body').removeClass('bg-sky-100')
   } 
 });
 
