@@ -245,6 +245,7 @@ modalCloseButton.on('click', function() {
   //Unhides the content that was hidden from opening the modal
   $('.main-container').removeClass('hidden').addClass('flex')
   $('body').removeClass('bg-sky-100')
+  $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
   window.location.reload();
 })
 
@@ -256,6 +257,7 @@ $(document).keydown(function(event) {
     //Unhides the content that was hidden from opening the modal
     $('.main-container').removeClass('hidden').addClass('flex')
     $('body').removeClass('bg-sky-100')
+    $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
   } 
 });
 

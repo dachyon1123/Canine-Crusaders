@@ -26,11 +26,11 @@
             <a class="favorties-page" href="./favorites.html">Favorites</a></li>
         </nav>
     </header>
-    <div class="main-container flex">
+    <div class="main-container flex lg:flex-row sm:flex-col">
         <!--Aside Search Bar-->
         <aside>
-            <form class="dog-form" action="">
-                <div class="search-form">
+            <form class="dog-form sm:flex sm:flex-col items-center" action="">
+                <div class="search-form lg:block sm:flex sm:items-center">
                     <div class="form-category">
                         <label for="breed" class="category-title">Breed</label>
                         <select id="breed">
@@ -66,12 +66,12 @@
                             <option value="female">Female</option>
                         </select>
                     </div>
-                    <div class="form-category mb-10">
+                    <div class="form-category published-on mb-10">
                         <label for="start" class="category-title">Published on</label>
                         <input type="date" id="start" name="trip-start" value="" min="2021-12-31" max="" />
                     </div>
-                    <input type="submit" value="Search" id="search-button">
                 </div>
+                <input type="submit" value="Search" id="search-button">
             </form>
                     
         </aside>

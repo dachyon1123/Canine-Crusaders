@@ -244,7 +244,7 @@ function createDogCards(dogs) {
     }
 
     //Creates the card for the dog and assigns classes for formatting
-    let dogCard = $('<div>').addClass('dog-card flex flex-col justify-center h-80 w-80')
+    let dogCard = $('<div>').addClass('dog-card flex flex-col justify-center h-80 w-80 xl:h-80 xl:w-80 lg:h-60 lg:w-60')
 
     //Creates the image div within the dog card div and formats it
     let dogImageDiv = $('<div>').addClass('h-full overflow-hidden rounded-xl mr-2 ml-2')

@@ -160,3 +160,27 @@ input {
   padding: 10px 20px; /* Padding around the text */
   cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
 }
+
+
+
+@media only screen and (max-width: 1023px) {
+   aside {
+    width: 100%;
+    padding: 10px;
+    height: 175px;
+    border-right: none;
+   }
+   #search-button {
+     width: 20%;
+     height: 20%;
+   }
+   .category-title {
+     font-size: 14px;
+   }
+   .form-category {
+     width: 15%;
+   }
+   .published-on {
+     margin-top: 5px;
+   }
+  }
