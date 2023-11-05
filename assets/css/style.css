@@ -1,122 +1,173 @@
-/* Icon */
+/* Variables */
+:root {
+  --font-family1: Bangers;
+}
 
+/* Reset and Defaults */
+body {
+  background-image: url("/assets/images/field-of-grass-1362858.jpg");
+  background-size: contain;
+}
+
+/* Icon styles */
 .icon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  margin-top: 25px;
 }
 
 .icon img {
-    width: 120px;
-    border-radius: 50%;
-    margin-bottom: auto;
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: auto;
 }
 
-/* Header Title "Canine Crusaders" */
+/* Header styles */
 header {
-    position: relative;
-    margin-left: 120px;
-    margin-top: 65px;
-    border-bottom: 1px solid #000;
+  position: relative;
+  margin-top: 65px;
+  border-bottom: 1px solid #000;  
 }
 
-/* Aside Section */
-aside {
-    width: 20%;
-    height: fit-content;
-    padding: 20px;
-    border: 1px solid #ccc;
+#title1 {
+  font-family: var(--font-family1);
+  font-size: 35px;
+  margin-left: 34%;
 }
 
-/* Main Section */
+#title2 {
+  font-family: var(--font-family1);
+  font-size: 35px;
+  margin-left: 43%;
+}
+
+
+
+nav a {
+  color: rgb(0, 0, 0); /* Change the color to your preference */
+}
+
+/* To align the navigation to the right, use 'margin-left: auto' on the <nav> element */
+nav {
+  margin-left: auto;
+}
+
+/* Main content styles */
 main {
-    width: 100%;
-    padding: 20px;
+  width: 100%;
+  padding: 20px;
 }
 
-/* the search form as a whole on the aside section */
+#red-heart {
+  color: rgba(234, 28, 28, 0.889);
+}
+
+/* Aside styles */
+aside {
+  width: 20%;
+  height: fit-content;
+  padding: 20px;
+  border-right: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid black;
+}
+
+select, 
+input {
+  border-radius: 10px;
+}
+
+/* Section Titles */
+.h1 {
+  text-align: center;
+  font-size: 55px;
+  font-family: Bangers;
+  padding-bottom: 30px;
+}
+
+/* Form styles */
 .search-form {
-    text-align: center;
+  text-align: center;
 }
 
-/* Labels in the search bar -- "Breed, Size, Age, Gender */
 .category-title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-    display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  display: block;
 }
 
-/* a class for each form category's div */
 .form-category {
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 15px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
 }
 
-
-/* Centers the text within select elements and their options and adds a border around the select elements. */
-/* Style for select elements within .form-category */
-.form-category select {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center; /* Center the text within the select */
-}
-
-/* Style for options within select elements */
-.form-category select option {
-    text-align: center; /* Center the text within each option */
-}
-
-/* centers the breed placeholder */
-#breed::placeholder {
-    text-align: center;
-}
-
-/* style for inputs within the form-category */
+.form-category select,
 .form-category input {
-    border: 1px solid #ccc; 
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align-last: center; /* for aligning the text in select to the center in some browsers */
 }
 
-/* css for the search button */
+/* The ::placeholder selector is used to select and style the placeholder text of an input field. */
+#breed::placeholder {
+  text-align: center;
+}
+
+/* Search button styles */
 #search-button {
-    background-color: #007BFF; 
-    color: white; 
-    font-weight: bold; 
-    padding: 10px 20px; 
-    font-size: 16px; 
-    border: none; 
-    cursor: pointer;
-    width: 100%;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Modal styles */
+#modal {
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  height: 99%;
+}
+
+#modal[open] {
+  display: block; /* Or whatever display mode you prefer */
+  overflow-y: auto;
+}
+
+/* Card styles */
+.dog-card {
+  cursor: pointer;
 }
 
 
-/* The CSS for the modal itself, ensuring it covers other content */
-#modal {
-    /* existing styles... */
-    position: fixed; /* Position it relative to the viewport */
-    z-index: 1000; /* High z-index so it is above other content */
-    left: 50%; /* Positions the left edge of the modal in the middle of the screen */
-    top: 50%; /* Positions the top edge of the modal in the middle of the screen */
-    transform: translate(-50%, -50%); /* Shifts the modal back by half its width and height to center it */
-    display: none; /* Start off hidden */
-    /* More of your styling... */
-  }
-  
-  /* When the modal is being displayed, it should override the hidden display */
-  #modal[open] {
-    display: block;
-    overflow-y: auto /* Or whatever display mode you prefer */
-  }
-  
-  
-  .dog-card {
-    cursor: pointer;
-  }
+.favorites-button {
+  background-image: url('assets/images/star-regular.svg'); /* Replace with your image path */
+  background-size: cover; /* Cover the entire area of the button */
+  background-position: center; /* Center the background image */
+  border: none; /* Remove the border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding around the text */
+  cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
+}
 
+.favorites-button {
+  background-image: url('assets/images/star-regular.svg'); /* Replace with your image path */
+  background-size: cover; /* Cover the entire area of the button */
+  background-position: center; /* Center the background image */
+  border: none; /* Remove the border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding around the text */
+  cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
+}
