@@ -158,6 +158,16 @@ input {
   cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
 }
 
+.favorites-button {
+  background-image: url('assets/images/star-regular.svg'); /* Replace with your image path */
+  background-size: cover; /* Cover the entire area of the button */
+  background-position: center; /* Center the background image */
+  border: none; /* Remove the border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding around the text */
+  cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
+}
+
 
 
 @media only screen and (max-width: 1023px) {
