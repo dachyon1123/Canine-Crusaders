@@ -197,7 +197,8 @@ async function fetchToken() {
   let data = await res.json();
   return data['access_token']
 }
-fetchDogs();
+
+
 
 //Calls the petfinder api to give a list of dogs up for adoption
 async function fetchDogs (size, age, gender, breed, date) {
@@ -271,19 +272,31 @@ function createDogCards(dogs) {
       //Accesses elements from the HTML
       let dogModalName = $('.dog-name');
       let dogModalImage = $('.dog-image')
-      let dogModalDescription = $('.dog-description')
-      let dogBreed = $('.dog-breed')
-      let dogAge = $('.dog-age')
+      let dogModalDescription = $('.dog-description');
+      let dogBreed = $('.dog-breed-info');
+      let dogAge = $('.dog-age-info');
+      let email = $('.dog-email-info');
+      let phone = $('.dog-phone-info');
+      let dateAdded = $('.dateAdded');  
+      let favoritesDiv = $('.favorites')
+      let id = dogArray[i].id
+
+      //Resets NinjaAPI information
       ninjaApiInfo1.text('')
       ninjaApiInfo2.text('')
 
       //Adds dog name and description to the modal
       dogModalName.text(dogArray[i].name)
       dogModalDescription.text(dogArray[i].description)
-      dogBreed.text(dogArray[i].breeds.primary)
-      dogAge.text(dogArray[i].age)
 
-      
+      //Adds dog breed, age, email, phone, and published date to the modal
+      dogBreed.text('').append(`${dogArray[i].breeds.primary}`)
+      dogAge.text('').append(`${dogArray[i].age}`)
+      email.text('').append(`${dogArray[i].contact.email}`)
+      phone.text('').append(`${dogArray[i].contact.phone}`)
+      dateAdded.text('').append(` Published on ${dayjs(dogArray[i].published_at).format('MM/DD/YYYY')}`)
+
+      //Adds a photo of the dog to the modal
       dogModalImage.attr('src', dogArray[i].photos[0].full)
 
       favoritesDiv.empty();
@@ -338,7 +351,7 @@ modalCloseButton.on('click', function() {
   $('.footer').removeClass('hidden');
   $('.header').removeClass('hidden');
   $('body').removeClass('bg-neutral-600')
-  $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
+  $('body').css('background-image', 'url("../images/field-of-grass-1362858.jpg")');
   $('.icon').removeClass('hidden')
   $('header').removeClass('hidden')
 })
@@ -353,7 +366,7 @@ $(document).keydown(function(event) {
       $('.footer').removeClass('hidden');
       $('.header').removeClass('hidden');
       $('body').removeClass('bg-neutral-600')
-      $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
+      $('body').css('background-image', 'url("../images/field-of-grass-1362858.jpg")');
       $('.icon').removeClass('hidden')
       $('header').removeClass('hidden')
   } 
@@ -443,9 +456,3 @@ function noInformationFound() {
   ninjaApiInfo2.append(goodWithDogs)
   ninjaApiInfo2.append(goodWithChildren)
 }
-
-
-
-
-
-
