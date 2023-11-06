@@ -351,7 +351,7 @@ modalCloseButton.on('click', function() {
   $('.footer').removeClass('hidden');
   $('.header').removeClass('hidden');
   $('body').removeClass('bg-neutral-600')
-  $('body').css('background-image', 'url("../images/field-of-grass-1362858.jpg")');
+  $('body').css('background-image', 'url("./assets/images/field-of-grass-1362858.jpg")');
   $('.icon').removeClass('hidden')
   $('header').removeClass('hidden')
 })
@@ -366,7 +366,7 @@ $(document).keydown(function(event) {
       $('.footer').removeClass('hidden');
       $('.header').removeClass('hidden');
       $('body').removeClass('bg-neutral-600')
-      $('body').css('background-image', 'url("../images/field-of-grass-1362858.jpg")');
+      $('body').css('background-image', 'url("./assets/images/field-of-grass-1362858.jpg")');
       $('.icon').removeClass('hidden')
       $('header').removeClass('hidden')
   } 
