@@ -135,10 +135,15 @@ let ninjaApiInfo2 = $('.ninja-api-information2')
 let modalCloseButton = $('.close-modal')
 let favoritesArray = [];
 
+function retreiveFavorites() {
+  favoritesArray = JSON.parse(localStorage.getItem('favoriteDogs'));
+}
+
 // Initialization on document ready
 $(function() {
   initializeDateInputs();
   populateBreedOptions();
+  retreiveFavorites();
 });
 
 // Initialize date inputs with current date
@@ -259,7 +264,9 @@ function createDogCards(dogs) {
       $('.footer').addClass('hidden');
       $('.header').addClass('hidden');
       $('body').css('background-image', 'none');
-      $('body').addClass('bg-sky-100')
+      $('body').addClass('bg-neutral-600')
+      $('.icon').addClass('hidden')
+      $('header').addClass('hidden')
 
       //Accesses elements from the HTML
       let dogModalName = $('.dog-name');
@@ -304,15 +311,18 @@ function createDogCards(dogs) {
       favoritesButton.on('click', function() {
         if (!favoritesArray.includes(id)) {
           favoritesArray.push(id);
-          console.log(favoritesArray)
-
           favoritesButton.addClass('bg-yellow-600')
+
+          localStorage.setItem('favoriteDogs', JSON.stringify(favoritesArray))
+
         } else if (favoritesArray.includes(id)) {
           let indexOfId = favoritesArray.indexOf(id)
           favoritesArray.splice(indexOfId, 1)
           console.log(favoritesArray)
           
           favoritesButton.removeClass('bg-yellow-600')
+
+          localStorage.setItem('favoriteDogs', JSON.stringify(favoritesArray))
         }
       })
       
@@ -337,7 +347,7 @@ modalCloseButton.on('click', function() {
   $('.main-container').removeClass('hidden').addClass('flex')
   $('.footer').removeClass('hidden');
   $('.header').removeClass('hidden');
-  $('body').removeClass('bg-sky-100')
+  $('body').removeClass('bg-neutral-600')
   $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
 })
 
@@ -350,8 +360,10 @@ $(document).keydown(function(event) {
       $('.main-container').removeClass('hidden').addClass('flex')
       $('.footer').removeClass('hidden');
       $('.header').removeClass('hidden');
-      $('body').removeClass('bg-sky-100')
+      $('body').removeClass('bg-neutral-600')
       $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
+      $('.icon').removeClass('hidden')
+      $('header').removeClass('hidden')
   } 
 });
 
