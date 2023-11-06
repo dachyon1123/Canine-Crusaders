@@ -44,70 +44,74 @@ function createFavoriteCard(dog) {
   
    //Creates dog cards for the amount of dogs in the array that is fetched from petfinder API
      //Gets the .dog-cards div from the HTML and assigns it to dogCardDiv
-     let dogCardDiv = $('.dog-cards');
- 
+    let dogCardDiv = $('.dog-cards');
+
      //Creates the card for the dog and assigns classes for formatting
-     let dogCard = $('<div>').addClass('dog-card flex flex-col justify-center h-80 w-80')
- 
+    let dogCard = $('<div>').addClass('dog-card flex flex-col justify-center h-80 w-80')
+  
      //Creates the image div within the dog card div and formats it
-     let dogImageDiv = $('<div>').addClass('h-full overflow-hidden rounded-xl mr-2 ml-2')
-     
+    let dogImageDiv = $('<div>').addClass('h-full overflow-hidden rounded-xl mr-2 ml-2')
+    
      //Creates the image container, adds the photo of the dog from the array, and formats it
-     let dogImage = $('<img>').attr('src', dog.animal.photos[0].full).addClass('h-full w-full')
-   
+    let dogImage = $('<img>').attr('src', dog.animal.photos[0].full).addClass('h-full w-full')
+  
      //Appends the variables above to the respective containers
-     dogCard.append(dogImageDiv)
-     dogImageDiv.append(dogImage)
-     dogCardDiv.append(dogCard)
- 
+    dogCard.append(dogImageDiv)
+    dogImageDiv.append(dogImage)
+    dogCardDiv.append(dogCard)
+
      //Adds an event handler to the dog cards to open the modal
-     dogCard.on('click', function() {
+    dogCard.on('click', function() {
        //Hides the background when modal opens
-       $('.main-container').removeClass('flex').addClass('hidden')
-       $('body').css('background-image', 'none');
-       $('body').addClass('bg-sky-100')
- 
+      $('.main-container').removeClass('flex').addClass('hidden')
+      $('body').css('background-image', 'none');
+      $('body').addClass('bg-sky-100')
+      $('.icon').addClass('hidden')
+      $('header').addClass('hidden')
+      $('.footer').addClass('hidden');
+      $('.header').addClass('hidden');
+
        //Accesses elements from the HTML
-       let dogModalName = $('.dog-name');
-       let dogModalImage = $('.dog-image')
-       let dogModalDescription = $('.dog-description');
-       let dogBreed = $('.dog-breed-info');
-       let dogAge = $('.dog-age-info');
-       let email = $('.dog-email-info');
-       let phone = $('.dog-phone-info');
-       let dateAdded = $('.dateAdded');  
-       let favoritesDiv = $('.favorites')
-       let id = dog.animal.id
- 
+      let dogModalName = $('.dog-name');
+      let dogModalImage = $('.dog-image')
+      let dogModalDescription = $('.dog-description');
+      let dogBreed = $('.dog-breed-info');
+      let dogAge = $('.dog-age-info');
+      let email = $('.dog-email-info');
+      let phone = $('.dog-phone-info');
+      let dateAdded = $('.dateAdded');  
+      let favoritesDiv = $('.favorites')
+      let id = dog.animal.id
+
        //Resets NinjaAPI information
-       ninjaApiInfo1.text('')
-       ninjaApiInfo2.text('')
- 
+      ninjaApiInfo1.text('')
+      ninjaApiInfo2.text('')
+
        //Adds dog name and description to the modal
-       dogModalName.text(dog.animal.name)
-       dogModalDescription.text(dog.animal.description)
- 
+      dogModalName.text(dog.animal.name)
+      dogModalDescription.text(dog.animal.description)
+
        //Adds dog breed, age, email, phone, and published date to the modal
-       dogBreed.text('').append(`${dog.animal.breeds.primary}`)
-       dogAge.text('').append(`${dog.animal.age}`)
-       email.text('').append(`${dog.animal.contact.email}`)
-       phone.text('').append(`${dog.animal.contact.phone}`)
-       dateAdded.text('').append(` Published on ${dayjs(dog.animal.published_at).format('MM/DD/YYYY')}`)
- 
+      dogBreed.text('').append(`${dog.animal.breeds.primary}`)
+      dogAge.text('').append(`${dog.animal.age}`)
+      email.text('').append(`${dog.animal.contact.email}`)
+      phone.text('').append(`${dog.animal.contact.phone}`)
+      dateAdded.text('').append(` Published on ${dayjs(dog.animal.published_at).format('MM/DD/YYYY')}`)
+
        //Adds a photo of the dog to the modal
-       dogModalImage.attr('src', dog.animal.photos[0].full)
- 
-       favoritesDiv.empty();
-       let favoritesButton = $('<button>').addClass('mr-10 p-2 border-2 border-zinc-900').text('Favorite')
-       favoritesDiv.append(favoritesButton)
- 
-       if (favoritesArray.includes(id)) {
-         favoritesButton.addClass('bg-yellow-600')
-       }
- 
- 
- 
-       favoritesButton.on('click', function() {
+      dogModalImage.attr('src', dog.animal.photos[0].full)
+
+      favoritesDiv.empty();
+      let favoritesButton = $('<button>').addClass('mr-10 p-2 border-2 border-zinc-900').text('Favorite')
+      favoritesDiv.append(favoritesButton)
+
+      if (favoritesArray.includes(id)) {
+        favoritesButton.addClass('bg-yellow-600')
+      }
+
+
+
+      favoritesButton.on('click', function() {
         if (favoritesArray.includes(id)) {
           let indexOfId = favoritesArray.indexOf(id)
           favoritesArray.splice(indexOfId, 1)
@@ -118,20 +122,20 @@ function createFavoriteCard(dog) {
           localStorage.setItem('favoriteDogs', JSON.stringify(favoritesArray))
 
           window.location.reload();
-         }
-       })
-       
- 
- 
- 
- 
-       //Fetchs the NinjaAPI information toa dd to the modal
-       fetchDogInformation(dog.animal.breeds.primary)
- 
-       //Shows the modal
-       dogModal.show();
-     })
-   }  
+        }
+      })
+      
+
+
+
+
+      //Fetchs the NinjaAPI information toa dd to the modal
+      fetchDogInformation(dog.animal.breeds.primary)
+
+      //Shows the modal
+      dogModal.show();
+    })
+  }  
 
     
     
@@ -244,7 +248,10 @@ modalCloseButton.on('click', function() {
 
   //Unhides the content that was hidden from opening the modal
   $('.main-container').removeClass('hidden').addClass('flex')
-  $('body').removeClass('bg-sky-100')
+  $('.footer').removeClass('hidden');
+  $('.header').removeClass('hidden');
+  $('body').removeClass('bg-neutral-600')
+  $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
   window.location.reload();
 })
 
@@ -255,7 +262,12 @@ $(document).keydown(function(event) {
     
     //Unhides the content that was hidden from opening the modal
     $('.main-container').removeClass('hidden').addClass('flex')
-    $('body').removeClass('bg-sky-100')
+    $('.footer').removeClass('hidden');
+    $('.header').removeClass('hidden');
+    $('body').removeClass('bg-neutral-600')
+    $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
+    $('.icon').removeClass('hidden')
+    $('header').removeClass('hidden')
   } 
 });
 

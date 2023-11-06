@@ -136,7 +136,7 @@ let modalCloseButton = $('.close-modal')
 let favoritesArray = [];
 
 function retreiveFavorites() {
-  favoritesArray = JSON.parse(localStorage.getItem('favoriteDogs'));
+  favoritesArray = JSON.parse(localStorage.getItem('favoriteDogs')) ?? [];
 }
 
 // Initialization on document ready
@@ -144,7 +144,7 @@ $(function() {
   initializeDateInputs();
   populateBreedOptions();
   retreiveFavorites();
-});
+})
 
 // Initialize date inputs with current date
 function initializeDateInputs() {
@@ -243,8 +243,9 @@ function createDogCards(dogs) {
       continue
     }
 
+    console.log(i)
     //Creates the card for the dog and assigns classes for formatting
-    let dogCard = $('<div>').addClass('dog-card flex flex-col justify-center h-80 w-80')
+    let dogCard = $('<div>').addClass('dog-card flex flex-col justify-center h-80 w-80 xl:h-80 xl:w-80 lg:h-60 lg:w-60')
 
     //Creates the image div within the dog card div and formats it
     let dogImageDiv = $('<div>').addClass('h-full overflow-hidden rounded-xl mr-2 ml-2')
@@ -264,7 +265,7 @@ function createDogCards(dogs) {
       $('.footer').addClass('hidden');
       $('.header').addClass('hidden');
       $('body').css('background-image', 'none');
-      $('body').addClass('bg-neutral-600')
+      $('body').addClass('sm:bg-neutral-600')
       $('.icon').addClass('hidden')
       $('header').addClass('hidden')
 
@@ -301,6 +302,8 @@ function createDogCards(dogs) {
       favoritesDiv.empty();
       let favoritesButton = $('<button>').addClass('mr-10 p-2 border-2 border-zinc-900').text('Favorite')
       favoritesDiv.append(favoritesButton)
+
+      
 
       if (favoritesArray.includes(id)) {
         favoritesButton.addClass('bg-yellow-600')
@@ -349,6 +352,8 @@ modalCloseButton.on('click', function() {
   $('.header').removeClass('hidden');
   $('body').removeClass('bg-neutral-600')
   $('body').css('background-image', 'url("/assets/images/field-of-grass-1362858.jpg")');
+  $('.icon').removeClass('hidden')
+  $('header').removeClass('hidden')
 })
 
 //Closes modal when esc is pressed
