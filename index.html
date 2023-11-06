@@ -19,18 +19,18 @@
         <img src="./assets/images/dog print and hand.jpeg" alt="Paw Print Icon">
     </div>
     <!--Header Title-->
-    <header class="h-1/4">
+    <header class="h-1/4 flex flex-col">
         <h1 class="h1">Canine Crusaders</h1>
-        <nav class="absolute right-36 top-20 font-bold text-2xl">
+        <nav class= "font-bold text-2xl flex justify-center">
             <a class="mr-5" href="./index.html">Home</a> 
             <a class="favorties-page" href="./favorites.html">Favorites</a></li>
         </nav>
     </header>
-    <div class="main-container flex lg:flex-row sm:flex-col">
+    <div class="main-container flex lg:flex-row flex-col">
         <!--Aside Search Bar-->
         <aside>
-            <form class="dog-form sm:flex sm:flex-col items-center" action="">
-                <div class="search-form lg:block sm:flex sm:items-center">
+            <form class="dog-form flex flex-col items-center" action="">
+                <div class="search-form lg:block flex items-center">
                     <div class="form-category">
                         <label for="breed" class="category-title">Breed</label>
                         <select id="breed">
@@ -66,7 +66,7 @@
                             <option value="female">Female</option>
                         </select>
                     </div>
-                    <div class="form-category published-on mb-10">
+                    <div class="form-category published-on lg:mb-10">
                         <label for="start" class="category-title">Published on</label>
                         <input type="date" id="start" name="trip-start" value="" min="2021-12-31" max="" />
                     </div>
@@ -84,25 +84,25 @@
         </main>
     </div>
 
-    <dialog class="modal w-3/4 border-slate-900 border-solid border-2 rounded-3xl z-10" id="modal" data-modal-background="static">
-        <div class="dogImageDiv bg-zinc-900 h-1/2 w-full flex justify-center rounded-t-2xl mb-2">
+    <dialog class="modal sm:w-3/4 w-full border-slate-900 border-solid sm:rounded-3xl rounded-none z-10 sm:overflow-none overflow-y-scroll" id="modal" data-modal-background="static">
+        <div class="dogImageDiv bg-zinc-900 sm:h-1/2 h-full w-full flex justify-center sm:rounded-t-3xl rounded-none mb-2">
             
-            <img class="dog-image" alt="Dog Image">
+            <img class="dog-image object-contain" alt="Dog Image">
         </div>
         <div class="dog-information flex flex-col">
             <div class="name-favorite flex items-center justify-between">
-                <h1 class="dog-name ml-5 text-5xl mt-2 mb-3"></h1>
+                <h1 class="dog-name ml-5 sm:text-5xl text-4xl mt-2 mb-3"></h1>
                 <div class="favorites">
                     
                 </div>
             </div>
-            <span class="dog-description ml-5 text-xl h-1/4 w-3/4"></span>
-            <span class="dog-age flex gap-2 text-xl ml-5 mt-2"><strong>Age: </strong><p class="dog-age-info"></p></span>
-            <span class="dog-breed flex gap-2 text-xl ml-5 mt-2"><strong>Breed: </strong><p class="dog-breed-info"></p></span>
-            <span class="email flex gap-2 text-xl ml-5 mt-2"><strong>Email: </strong><p class="dog-email-info"></p></span>
-            <span class="phone flex gap-2 text-xl ml-5 mt-2"><strong>Phone: </strong><p class="dog-phone-info"></p></span>
+            <span class="dog-description ml-5 sm:text-xl text-lg h-1/4 w-3/4"></span>
+            <span class="dog-age flex gap-2 sm:text-xl ml-5 mt-2"><strong>Age: </strong><p class="dog-age-info"></p></span>
+            <span class="dog-breed flex gap-2 sm:text-xl ml-5 mt-2"><strong>Breed: </strong><p class="dog-breed-info"></p></span>
+            <span class="email flex gap-2 sm:text-xl ml-5 mt-2"><strong>Email: </strong><p class="dog-email-info"></p></span>
+            <span class="phone flex gap-2 sm:text-xl ml-5 mt-2"><strong>Phone: </strong><p class="dog-phone-info"></p></span>
 
-            <div class="all-ninja-api-info font-sans flex flex-col mt-5 ml-5 gap-2">
+            <div class="all-ninja-api-info font-sans text-sm flex 2xl:flex-col sm:flex-row mt-2 ml-5 2xl:gap-5 gap-12">
                 <div class="ninja-api-information1 font-mono">
 
                 </div>
@@ -111,7 +111,7 @@
                 </div>
             </div>
 
-            <span class="dateAdded absolute inset-x-0 bottom-2 text-sm text-center"></span>
+            <span class="dateAdded absolute inset-x-0 bottom-2 text-sm text-center sm:bg-inherit bg-zinc-900 sm:text-zinc-900 text-white"></span>
         
         </div>
         <button type="button" class="close-modal text-white bg-gray-800 hover-bg-gray-900 focus-outline-none focus-ring-4 focus-ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark-bg-gray-800 dark-hover-bg-gray-700 dark-focus-ring-gray-700 dark-border-gray-700 absolute top-5 right-5">X</button>

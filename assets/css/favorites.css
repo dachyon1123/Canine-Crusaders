@@ -39,7 +39,6 @@ header {
 #title2 {
   font-family: var(--font-family1);
   font-size: 35px;
-  margin-left: 43%;
 }
 
 
@@ -48,10 +47,7 @@ nav a {
   color: rgb(0, 0, 0); /* Change the color to your preference */
 }
 
-/* To align the navigation to the right, use 'margin-left: auto' on the <nav> element */
-nav {
-  margin-left: auto;
-}
+
 
 /* Main content styles */
 main {
