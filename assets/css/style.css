@@ -6,7 +6,6 @@
 /* Reset and Defaults */
 body {
   background-image: url("/assets/images/field-of-grass-1362858.jpg");
-  background-size: contain;
 }
 
 /* Icon styles */
@@ -50,9 +49,6 @@ nav a {
 }
 
 /* To align the navigation to the right, use 'margin-left: auto' on the <nav> element */
-nav {
-  margin-left: auto;
-}
 
 /* Main content styles */
 main {
@@ -170,4 +166,40 @@ input {
   color: white; /* Text color */
   padding: 10px 20px; /* Padding around the text */
   cursor: pointer; /* Mouse cursor changes to indicate a clickable item */
+}
+
+
+
+@media only screen and (max-width: 1023px) {
+  aside {
+    width: 100%;
+    padding: 10px;
+    height: 175px;
+    border-right: none;
+  }
+  #search-button {
+    width: 20%;
+    height: 20%;
+  }
+  .category-title {
+    font-size: 14px;
+  }
+  .form-category {
+    width: 15%;
+  }
+  .published-on {
+    margin-top: 5px;
+  }
+}
+
+
+
+@media only screen and (max-width: 640px) {
+  .category-title {
+    font-size: 10px;
+  }
+  .h1 {
+    font-size: 40px;
+    margin-left: 100px;
+  }
 }
